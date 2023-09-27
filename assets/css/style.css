@@ -1,0 +1,123 @@
+@import url('./fonts.css');
+body,
+html {
+  font-family: 'Museo Sans', Arial, Helvetica, sans-serif;
+  /* background: #f5f6f7; */
+  font-size: 16px;
+  min-height: 100vh;
+  color: #40484F;
+  overflow-x: hidden;
+}
+.bg-blue {
+    background: #1C7ADC;
+}
+.text-light {
+  color: #E7E8EB !important;
+}
+.text-lighter {
+  color: rgba(64, 72, 79, 0.60) !important;
+}
+.text-blue {
+  color: #1070B7 !important;
+}
+.pointer {
+  cursor: pointer;
+}
+.fs-24 {
+  font-size: 24px !important;
+}
+.fs-20 {
+    font-size: 20px !important;
+}
+.fs-18 {
+    font-size: 18px !important;
+}
+.fs-14 {
+    font-size: 14px !important;
+}
+.fs-12 {
+  font-size: 12px !important;
+}
+.fs-10 {
+  font-size: 10px !important;
+}
+.font-weight-600 {
+    font-weight: 600 !important;
+}
+.font-weight-medium {
+    font-weight: 500 !important;
+}
+.font-weight-400 {
+    font-weight: 400 !important;
+}
+/* Buttons  */
+.btn {
+    border-radius: 12px;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  .btn.btn-light {
+    background: #fbfdfe;
+    border: 1px solid #e7e8eb;
+    color: #40484f;
+  }
+  .btn.btn-light:hover {
+    background: #eff2f4;
+  }
+  .btn.btn-dark {
+    background: #171e40;
+    border: 1px solid #171e40;
+    color: #fff;
+  }
+  .btn.btn-dark:not(:disabled):hover,
+  .btn.btn-dark:not(:disabled):focus,
+  .btn.btn-dark:not(:disabled):active {
+    background: #171e40;
+  }
+
+  /* Slick Carousel */
+  .slick-dots {
+    bottom: -60px !important;
+  }
+  .slick-dots li.slick-active button::before {
+    color: #fff !important;
+  }
+  .slick-dots li button::before {
+    font-size: 8px !important;
+  }
+  /* Forms */
+  .form-control-label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: #667784;
+    margin-bottom: 0.25rem;
+  }
+  .form-control {
+    background: #ffffff;
+    border: 1px solid #E7E8EB;
+    border-radius: 12px;
+    color: #40484f;
+    font-size: 14px;
+    line-height: 100%;
+    height: 44px; 
+  }
+  .form-control::placeholder {
+    color: #8f9aa3;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .form-control:placeholder-shown {
+    background: #fbfdfe;
+  }
+
+  .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #171e40; /* Change to your desi#171e40 color */
+    border-color: #171e40; /* Change to your desired color */
+  }
+  .icon-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #DDEFFE;
+  }
