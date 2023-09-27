@@ -17,10 +17,10 @@
       </div>
     </VueSlickCarousel>
     <div class="d-flex align-items-center justify-content-center cta">
-      <button class="btn btn-dark font-weight-600 py-2 px-5" @click.prevent="$router.push('/auth/signup')">
+      <button class="btn btn-dark font-weight-600 py-2 px-5 max-width" @click.prevent="$router.push('/auth/signup')">
         Sign Up
       </button>
-      <button class="btn btn-light font-weight-600 py-2 px-5 ml-4" @click.prevent="$router.push('/auth/login')">
+      <button class="btn btn-light font-weight-600 py-2 px-5 ml-4 max-width" @click.prevent="$router.push('/auth/login')">
         Login
       </button>
     </div>
@@ -66,6 +66,10 @@ export default {
 .cta {
   position: absolute;
   bottom: 5vh;
-  left: 30px;
+  left: 50%;
+    transform: translate(-50%, -50%);
+}
+.max-width {
+  white-space: nowrap;
 }
 </style>
