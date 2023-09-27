@@ -2,25 +2,8 @@
   <div class="homepage bg-blue">
     <div class="container">
     <VueSlickCarousel :arrows="false" :dots="true" :slides-to-show="1" :slides-to-scroll="1" :autoplay="true"
-      :speed="1000" :autoplay-speed="4000" :responsive="[
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            infinite: true,
-            dots: true,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ]">
-      <div v-for="(el, index) in informations" :key="index" class="d-flex flex-column align-items-center justify-content-center">
+      :speed="1000" :autoplay-speed="4000">
+      <div v-for="(el, index) in informations" :key="index">
         <div class="d-flex align-items-center justify-content-center img-wrapper">
           <div class="img-container d-flex align-items-center justify-content-center"
             :style="{ backgroundColor: el.bgColor }">
@@ -56,9 +39,9 @@ export default {
   data() {
     return {
       informations: [
-        { title: 'Monitor your child’s progress', description: 'Gain access to your child’s grades, exercises and progress in school.', image: require('@/assets/img/goal1.png'), bgColor: '#E3F9FD' },
-        { title: 'Manage School Bills and Invoices', description: 'Easy payment of receipt of bills from your child’s school.', image: require('@/assets/img/bill.png'), bgColor: '#FEF8D8' },
-        { title: 'Communicate with your child’s teacher', description: 'Convenient way to send messages, recieve daily communication logs.', image: require('@/assets/img/chat.png'), bgColor: '#EBF0FE' },
+        { title: 'Monitor your child’s progress', description: 'Gain access to your child’s grades, exercises and progress in school.', image: require('@/assets/img/goal.svg'), bgColor: '#E3F9FD' },
+        { title: 'Manage School Bills and Invoices', description: 'Easy payment of receipt of bills from your child’s school.', image: require('@/assets/img/bill.svg'), bgColor: '#FEF8D8' },
+        { title: 'Communicate with your child’s teacher', description: 'Convenient way to send messages, recieve daily communication logs.', image: require('@/assets/img/chat.svg'), bgColor: '#EBF0FE' },
       ]
     }
   }
@@ -77,10 +60,12 @@ export default {
 }
 
 .img-wrapper {
-  padding-top: 90px;
+  padding-top: 20vh;
 }
 
 .cta {
-  margin-top: 100px;
+  position: absolute;
+  bottom: 5vh;
+  left: 30px;
 }
 </style>

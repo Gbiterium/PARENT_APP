@@ -77,7 +77,7 @@ html {
 
   /* Slick Carousel */
   .slick-dots {
-    bottom: -60px !important;
+    bottom: -10vh !important;
   }
   .slick-dots li.slick-active button::before {
     color: #fff !important;
