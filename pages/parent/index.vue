@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div v-for="(el, index) in menus" :key="index" class="col-6 col-md-4 mt-3 pointer">
-                <div class="menu p-3" :style="{ background: el.background, borderBottom: `2px solid ${el.color}`}">
+                <div class="menu p-3" :style="{ background: el.background, borderBottom: `2px solid ${el.color}`}" @click.prevent="$router.push(el.route)">
                     <div :class="el.name === 'Communication' ? 'icon-bg' : ''">
                     <img :src="el.icon" />
                     </div>
@@ -20,12 +20,12 @@ export default {
     data() {
         return {
             menus: [
-                { name: 'Exercises', summary: '28 Undone', icon: require('@/assets/img/book.svg'), color: '#5B5DE9', background: 'linear-gradient(227deg, rgba(91, 93, 233, 0.15) -55.59%, rgba(91, 93, 233, 0.00) 94.23%)' },
-                { name: 'Communication', summary: '5 unread', icon: require('@/assets/img/communication.svg'), color: '#F77664', background: 'linear-gradient(227deg, rgba(247, 118, 100, 0.15) -55.59%, rgba(247, 118, 100, 0.00) 94.23%)' },
-                { name: 'Finance', summary: '3 Open Invoice', icon: require('@/assets/img/finance.svg'), color: '#FFD057', background: 'linear-gradient(227deg, rgba(255, 208, 87, 0.15) -55.59%, rgba(255, 208, 87, 0.00) 94.23%)' },
-                { name: 'Report Card', summary: '20 Files', icon: require('@/assets/img/report.svg'), color: '#649FF7', background: 'linear-gradient(227deg, rgba(100, 159, 247, 0.18) -55.59%, rgba(100, 159, 247, 0.00) 94.23%)' },
-                { name: 'Gradebook', summary: '40 Entries', icon: require('@/assets/img/gradebook.svg'), color: '#D357FF', background: 'linear-gradient(227deg, rgba(211, 87, 255, 0.15) -55.59%, rgba(211, 87, 255, 0.00) 94.23%)' },
-                { name: 'Attendance', summary: 'View Details', icon: require('@/assets/img/attendance.svg'), color: '#FF5789', background: 'linear-gradient(227deg, rgba(255, 87, 137, 0.15) -55.59%, rgba(255, 87, 137, 0.00) 94.23%)' },
+                { name: 'Exercises', summary: '28 Undone', icon: require('@/assets/img/book.svg'), color: '#5B5DE9', background: 'linear-gradient(227deg, rgba(91, 93, 233, 0.15) -55.59%, rgba(91, 93, 233, 0.00) 94.23%)', route: '/parent' },
+                { name: 'Communication', summary: '5 unread', icon: require('@/assets/img/communication.svg'), color: '#F77664', background: 'linear-gradient(227deg, rgba(247, 118, 100, 0.15) -55.59%, rgba(247, 118, 100, 0.00) 94.23%)', route: '/parent/communication' },
+                { name: 'Finance', summary: '3 Open Invoice', icon: require('@/assets/img/finance.svg'), color: '#FFD057', background: 'linear-gradient(227deg, rgba(255, 208, 87, 0.15) -55.59%, rgba(255, 208, 87, 0.00) 94.23%)', route: '/parent' },
+                { name: 'Report Card', summary: '20 Files', icon: require('@/assets/img/report.svg'), color: '#649FF7', background: 'linear-gradient(227deg, rgba(100, 159, 247, 0.18) -55.59%, rgba(100, 159, 247, 0.00) 94.23%)', route: '/parent' },
+                { name: 'Gradebook', summary: '40 Entries', icon: require('@/assets/img/gradebook.svg'), color: '#D357FF', background: 'linear-gradient(227deg, rgba(211, 87, 255, 0.15) -55.59%, rgba(211, 87, 255, 0.00) 94.23%)', route: '/parent' },
+                { name: 'Attendance', summary: 'View Details', icon: require('@/assets/img/attendance.svg'), color: '#FF5789', background: 'linear-gradient(227deg, rgba(255, 87, 137, 0.15) -55.59%, rgba(255, 87, 137, 0.00) 94.23%)', route: '/parent' },
             ]
         }
     }
