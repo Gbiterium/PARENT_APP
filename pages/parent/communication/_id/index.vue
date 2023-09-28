@@ -61,8 +61,14 @@ export default {
   object-fit: cover;
   border-radius: 50%;
 }
+.top-bar {
+    position: fixed;
+    width: 100%;
+    background: #fff;
+}
 .chat-view {
     background: #f0f7fb;
     min-height: 100vh;
+    overflow: auto;
 }
 </style>
