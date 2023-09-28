@@ -20,8 +20,14 @@ html {
 .text-blue {
   color: #1070B7 !important;
 }
+.text-grey {
+  color: #8f9aa3 !important;
+}
 .pointer {
   cursor: pointer;
+}
+.fs-30 {
+  font-size: 30px !important;
 }
 .fs-24 {
   font-size: 24px !important;
@@ -120,4 +126,22 @@ html {
     height: 48px;
     border-radius: 50%;
     background-color: #DDEFFE;
+  }
+  .chat-list-item {
+    display: flex;
+    align-items: center;
+  
+    margin: 0 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #dbeaf4;
+    border-top: 1px solid #dbeaf4;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .chat-list-item:hover,
+  .chat-list-item:focus,
+  .chat-list-item:active {
+    margin: 0 0;
+    padding: 1rem 1rem;
+    background: #f3f8fc;
   }
