@@ -42,7 +42,7 @@
             </div>
             <div class="row">
             <div class="col-md-3 mt-5">
-                <button class="btn btn-dark font-weight-600 py-2 w-100">
+                <button class="btn btn-dark font-weight-600 py-2 w-100" @click.prevent="$router.push('/schools')">
                     Log in
   </button>
             </div>
