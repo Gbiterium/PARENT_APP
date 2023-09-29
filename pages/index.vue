@@ -47,7 +47,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .img-container {
   width: 200px;
   height: 200px;
@@ -65,7 +65,7 @@ export default {
 
 .cta {
   position: absolute;
-  bottom: 5vh;
+  bottom: 4vh;
   left: 50%;
     transform: translate(-50%, -50%);
 }
