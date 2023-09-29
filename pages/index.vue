@@ -1,6 +1,6 @@
 <template>
   <div class="homepage bg-blue">
-    <div class="container">
+    <div v-if="!loading" class="container">
     <VueSlickCarousel :arrows="false" :dots="true" :slides-to-show="1" :slides-to-scroll="1" :autoplay="true"
       :speed="1000" :autoplay-speed="4000">
       <div v-for="(el, index) in informations" :key="index">
@@ -42,8 +42,14 @@ export default {
         { title: 'Monitor your child’s progress', description: 'Gain access to your child’s grades, exercises and progress in school.', image: require('@/assets/img/goal.svg'), bgColor: '#E3F9FD' },
         { title: 'Manage School Bills and Invoices', description: 'Easy payment of receipt of bills from your child’s school.', image: require('@/assets/img/bill.svg'), bgColor: '#FEF8D8' },
         { title: 'Communicate with your child’s teacher', description: 'Convenient way to send messages, recieve daily communication logs.', image: require('@/assets/img/chat.svg'), bgColor: '#EBF0FE' },
-      ]
+      ],
+      loading: true,
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
   }
 }
 </script>
