@@ -11,6 +11,12 @@ html {
 .bg-blue {
     background: #1C7ADC;
 }
+.slate-dark {
+  color: #171E40;
+}
+.text-light-blue {
+  color: #1C7ADC
+}
 .text-light {
   color: #E7E8EB !important;
 }
@@ -144,4 +150,10 @@ html {
     margin: 0 0;
     padding: 1rem 1rem;
     background: #f3f8fc;
+  }
+  .blue-badge {
+    color: #1C7ADC;
+    border: 1px solid #1C7ADC;
+    border-radius: 90px;
+    background: transparent;
   }

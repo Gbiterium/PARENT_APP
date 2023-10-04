@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="mt-5">
         <div class="search-input px-3 py-2">
             <input type="search" placeholder="Search...." class="form-control" >
             <b-icon-search class="icon text-grey" />
