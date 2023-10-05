@@ -77,6 +77,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    z-index: 1001;
 }
 
 .top-nav2 {
@@ -84,6 +85,7 @@ export default {
     height: auto;
     width: 100%;
     background: #1C7ADC;
+    z-index: 1001;
 }
 
 .img-container img {

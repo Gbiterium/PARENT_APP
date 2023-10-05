@@ -41,9 +41,4 @@ export default {
     width: 36px;
     height: 36px;
 }
-.card {
-    border: 0.5px solid #D8EDF5;
-    border-radius: 16px;
-    background: #fff;
-}
 </style>

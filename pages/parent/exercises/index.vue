@@ -69,9 +69,4 @@ export default {
     align-items: center;
     justify-content: center;
 }
-.card {
-    border-radius: 16px;
-border: 0.5px solid #D8EDF5;
-background: #FFF; 
-}
 </style>
