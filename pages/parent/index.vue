@@ -1,5 +1,5 @@
 <template>
-    <div class="container parent-menu">
+    <div class="container parent-menu mt-3">
         <div class="row">
             <div v-for="(el, index) in menus" :key="index" class="col-6 col-md-4 mt-3 pointer">
                 <div class="menu p-3" :style="{ background: el.background, borderBottom: `2px solid ${el.color}`}" @click.prevent="$router.push(el.route)">

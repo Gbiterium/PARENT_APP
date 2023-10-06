@@ -13,6 +13,7 @@
                             <div class="fs-20 font-weight-600">
                                 Yemi Oluwalaren
                             </div>
+                            <div v-if="$route.fullPath.includes('parent')" class="fs-14 font-weight-medium">Slate International School</div>
                         </div>
                     </div>
                     <div :class="pageRoutes && pageRoutes.length > 2 ? 'small-container' : 'img-container'">
