@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div :class="pageRoutes && pageRoutes.length > 2 ? 'top-nav2 pt-4' : 'top-nav py-4'">
+        <div :class="pageRoutes.length > 2 && pageRoutes[2] !== '' ? 'top-nav2 pt-4' : 'top-nav py-4'">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between text-white">
                     <div class="d-flex align-items-center">
                         <b-icon-list class="fs-24 pointer" />
-                        <div v-if="pageRoutes && pageRoutes.length > 2" class="ml-2 fs-20 font-weight-600 text-capitalize">
+                        <div v-if="pageRoutes.length > 2 && pageRoutes[2] !== ''" class="ml-2 fs-20 font-weight-600 text-capitalize">
                             {{ pageName.includes('-') ? pageName.replace(/-/g, " ") : pageName }}
                         </div>
                         <div v-else class="ml-3">
@@ -16,13 +16,13 @@
                             <div v-if="$route.fullPath.includes('parent')" class="fs-14 font-weight-medium">Slate International School</div>
                         </div>
                     </div>
-                    <div :class="pageRoutes && pageRoutes.length > 2 ? 'small-container' : 'img-container'">
-                        <img v-if="pageRoutes && pageRoutes.length > 2" class="pointer mr-2" src="@/assets/img/house.svg"
+                    <div :class="pageRoutes.length > 2 && pageRoutes[2] !== '' ? 'small-container' : 'img-container'">
+                        <img v-if="pageRoutes.length > 2 && pageRoutes[2] !== ''" class="pointer mr-2" src="@/assets/img/house.svg"
                             @click.prevent="$router.push('/parent')" />
                         <img src="@/assets/img/default_profile.png" />
                     </div>
                 </div>
-                <div v-if="pageRoutes && pageRoutes.length > 2" class="my-3 d-flex align-items-center pointer">
+                <div v-if="pageRoutes.length > 2 && pageRoutes[2] !== ''" class="my-3 d-flex align-items-center pointer">
                     <div v-for="(el, index) in students" :key="index" class="mr-2" @click.prevent="handleClick(el, index)">
                         <div class="d-flex align-items-center p-1"
                             :class="selectedIndex === index ? 'selected' : 'not-selected'">
