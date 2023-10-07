@@ -2,7 +2,7 @@
     <div>
         <div :class="pageRoutes.length > 2 && pageRoutes[2] !== '' ? 'top-nav2 pt-4' : 'top-nav py-4'">
             <div class="container">
-                <div class="d-flex align-items-center justify-content-between text-white">
+                <div class="d-flex align-items-center justify-content-between text-light-blue">
                     <div class="d-flex align-items-center">
                         <b-icon-list class="fs-24 pointer" />
                         <div v-if="pageRoutes.length > 2 && pageRoutes[2] !== ''" class="ml-2 fs-20 font-weight-600 text-capitalize">
@@ -74,7 +74,7 @@ export default {
     position: fixed;
     height: auto;
     width: 100%;
-    background: url('@/assets/img/bgimg.png');
+    /* background: url('@/assets/img/bgimg.png'); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -85,7 +85,7 @@ export default {
     position: fixed;
     height: auto;
     width: 100%;
-    background: #1C7ADC;
+    /* background: #1C7ADC; */
     z-index: 1001;
 }
 
