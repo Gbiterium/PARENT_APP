@@ -3,7 +3,7 @@
         <div :class="pageRoutes.length > 3 && pageRoutes[3] !== '' ? 'top-nav2 pt-4' : 'top-nav py-4'">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between text-light-blue">
-                    <div class="d-flex align-items-center" data-toggle="dropdown">
+                    <div class="d-flex align-items-center">
                         <b-icon-bell-fill class="pointer" />
                     </div>
                     <div v-if="pageRoutes.length > 3 && pageRoutes[3] !== ''" class="fs-20 font-weight-600 text-capitalize">
@@ -66,7 +66,11 @@ export default {
     computed: {
         ...mapGetters('auth', ['getUser']),
         school() {
+            if (this.$route.params.school) {
             return this.$store.getters["school/getSchoolByCode"](this.$route.params.school);
+            } else {
+                return
+            }
     },
     },
     watch: {

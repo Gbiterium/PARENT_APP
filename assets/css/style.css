@@ -92,7 +92,7 @@ html {
 
   /* Slick Carousel */
   .slick-dots {
-    bottom: -8vh !important;
+    bottom: -3em !important;
   }
   .slick-dots li.slick-active button::before {
     color: #fff !important;

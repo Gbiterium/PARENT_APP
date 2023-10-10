@@ -9,7 +9,8 @@
         <div class="font-weight-600 fs-20 mt-3">
             Connect to your child’s school.
         </div>
-        <form class="mt-5" ref="form">
+        <ValidationObserver ref="form">
+        <form class="mt-5">
             <div class="row">
                 <div class="col-md-7 mt-3">
                     <label class="form-control-label">School Code</label>
@@ -20,7 +21,7 @@
             </div>
             <div class="row">
             <div class="col-md-3 mt-4">
-                <button class="btn btn-dark font-weight-600 py-2 w-100" @click.prevent="conectSchool">
+                <button class="btn btn-dark font-weight-600 py-2 w-100" :disabled="loading" @click.prevent="conectSchool">
                     Connect <span
         v-if="loading"
         class="spinner-border spinner-border-sm"
@@ -31,6 +32,7 @@
             </div>
             </div>
         </form>
+        </ValidationObserver>
     </div>
 </template>
 
@@ -49,10 +51,10 @@ export default {
     },
         async conectSchool() {
             try {
-            //     const result = await this.checkFormValidity()
-            // if (!result) {
-            //     return
-            // }
+                const result = await this.checkFormValidity()
+            if (!result) {
+                return
+            }
                 this.loading = true
                 const response = await this.$axios.post('/util/v2/link/entity/?entity=family', {
                     school_code: this.school_code

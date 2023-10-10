@@ -9,6 +9,9 @@ const mutations = {
         state.token = null;
         state.user = null;
     },
+    SET_SIGNUP_USER: (state, value) => {
+        state.userSigningUp = value;
+    }
 }
 
 export default mutations

@@ -1,5 +1,5 @@
 <template>
-  <div class="homepage bg-blue">
+  <div class="homepage bg-blue d-flex align-items-center">
     <div v-if="!loading" class="container">
     <VueSlickCarousel :arrows="false" :dots="true" :slides-to-show="1" :slides-to-scroll="1" :autoplay="true"
       :speed="1000" :autoplay-speed="4000">
@@ -68,13 +68,9 @@ export default {
   height: 100vh
 }
 
-.img-wrapper {
-  padding-top: 20vh;
-}
-
 .cta {
   position: absolute;
-  bottom: 4vh;
+  bottom: 1em;
   left: 50%;
     transform: translate(-50%, -50%);
 }
