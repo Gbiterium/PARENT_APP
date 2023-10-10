@@ -9,7 +9,18 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
+    script: [
+      {
+        src: '/js/jquery-3.5.1.slim.min.js',
+      },
+      {
+        src: '/js/bootstrap.bundle.min.js',
+      },
+      {
+        src: "https://accounts.google.com/gsi/client",
+      },
     ]
   },
 
@@ -19,6 +30,10 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/axios',
+    { src: '~/plugins/vee-validate', mode: 'client' },
+    { src: '~/plugins/iziToast', mode: 'client' },
+    '~/plugins/persistedState.client.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -36,6 +51,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    'cookie-universal-nuxt',
   ],
   
   bootstrapVue: {
@@ -46,7 +62,12 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: process.env.BASE_URL,
+  },
+
+  env: {
+    BASE_URL: process.env.BASE_URL,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

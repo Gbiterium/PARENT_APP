@@ -45,7 +45,24 @@
 
 <script>
 export default {
-
+    mounted() {
+        this.$nextTick(() => {
+        google.accounts.id.initialize({
+          client_id: process.env.GOOGLE_CLIENT_ID,
+          callback: this.googleLogin,
+        })
+        google.accounts.id.renderButton(
+          document.getElementById('buttonDiv'),
+          {
+            theme: 'outline',
+            size: 'large',
+            width: '400px',
+            text: 'signup_with',
+          } // customization attributes
+        )
+        google.accounts.id.prompt() // also display the One Tap dialog
+      })
+    },
 }
 </script>
 

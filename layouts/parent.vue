@@ -2,7 +2,7 @@
     <div class="page-wrapper">
         <LayoutNavbar class="site-nav" />
         <Nuxt />
-        <LayoutFooter v-if="pageRoutes.length < 3" />
+        <LayoutFooter v-if="pageRoutes.length < 4" />
     </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
     padding-bottom: 110px;
 }
 .page-wrapper {
-    /* background: #F5F9FA; */
+    background: #F5F9FA;
     min-height: 100vh;
 }
 </style>

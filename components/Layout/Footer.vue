@@ -24,7 +24,7 @@
     data() {
       return {
         tabs: [
-          { name: 'Schools', icon: 'house-door-fill', active: true },
+          { name: 'Schools', icon: 'house-door-fill', route: '/schools',  active: true },
           { name: 'Shopping', icon: 'cart-fill', active: false },
           { name: 'Discovery', icon: 'briefcase-fill', active: false }
         ]
@@ -34,6 +34,9 @@
       handleSwitch(selectedTab) {
         for (const tab of this.tabs) {
           tab.active = tab === selectedTab;
+        }
+        if (selectedTab.route) {
+        this.$router.push(selectedTab.route)
         }
       }
     }

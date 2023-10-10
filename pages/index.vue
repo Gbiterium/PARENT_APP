@@ -47,6 +47,9 @@ export default {
     }
   },
   mounted () {
+    if(this.$store.state.auth.token) {
+      this.$router.push('/schools')
+    }
     setTimeout(() => {
       this.loading = false
     }, 500)
