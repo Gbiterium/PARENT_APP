@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5">
+    <div class="container exercises">
         <div class="toggle d-flex align-items-center fs-14 font-weight-600 pointer">
             <div :class="!toggle ? 'toggled mr-4' : ' flex-grow-1 mx-4'" @click.prevent="notDone">Not Done (10)</div>
             <div :class="toggle ? 'toggled flex-grow-1' : 'flex-grow-0 mx-3'" @click.prevent="submitted">Submitted (50)
@@ -57,7 +57,9 @@ export default {
     border-radius: 12px;
     background: #F3FAFC;
 }
-
+.exercises {
+    padding-top: 4rem;
+}
 .toggled {
     background: #fff;
     color: #1C7ADC;

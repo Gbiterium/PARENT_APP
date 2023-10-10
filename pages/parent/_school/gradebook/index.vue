@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5">
+    <div class="container" style="padding-top: 4rem;">
         <div class="font-weight-600">Subject (8)</div>
         <div class="row mt-3">
             <div v-for="(el, index) in subjects" class="col-md-4 mb-2">

@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5">
+    <div class="container" style="padding-top: 4rem;">
         <div class="row">
         <div v-for="(el, index) in reports" :key="index" class="col-md-4 mb-2">
             <div class="card">
