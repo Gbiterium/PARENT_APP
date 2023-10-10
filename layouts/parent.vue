@@ -2,25 +2,13 @@
     <div class="page-wrapper">
         <LayoutNavbar class="site-nav" />
         <Nuxt />
-        <LayoutFooter v-if="pageRoutes.length < 4" />
+        <LayoutFooter v-if="$route.name.split('-').length < 3" />
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            pageRoutes: []
-        };
-    },
-    watch: {
-        '$route.path': {
-            handler(val) {
-                this.pageRoutes = val.split('/')
-            },
-            immediate: true
-        }
-    },
+    
 }
 </script>
 

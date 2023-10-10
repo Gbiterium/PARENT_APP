@@ -1,66 +1,206 @@
 <template>
-    <div class="pt-3">
-      <div class="d-flex flex-column align-items-center justify-content-center text-center chat-view">
-              <div class="mb-4">
-                <img class="img-fluid" src="@/assets/img/empty-chats.svg" />
+  <div class="pt-3">
+    <div class="chat-view">
+      <div v-if="!messages.length"
+        class="d-flex flex-column align-items-center justify-content-center text-center chat-area">
+        <div class="mb-4">
+          <img class="img-fluid" src="@/assets/img/empty-chats.svg" />
+        </div>
+        <div class="font-weight-bold fs-16 mb-3">
+          It’s Nice to chat with someone. 😊
+        </div>
+        <div class="fs-12 text-lighter">
+          Search for someone from the left menu<br />and start your conversation
+        </div>
+      </div>
+      <div v-else class="chat-area" id="chatView">
+        <div v-for="(message, messageIndex) in messages" :key="messageIndex" class="mb-2">
+          <div v-if="message.post || message.file" class="d-flex lightbluebh px-md-3 px-2" :class="`d-flex justify-content-${message.entity === 'family' ? 'end' : 'start'
+            }`">
+            <div class="d-flex align-items-center mr-2 text-primary">
+              <span style="transform: rotate(360deg)" @click="replyMessage(message)">
+                <b-icon-reply-fill class="fs-14 pointer"/>
+              </span>
+            </div>
+
+            <div>
+              <div class="bg-white rounded">
+                <small class="text-primary font-weight-bold fs-10 p-1">{{
+                  message.name
+                }}</small>
+                <div v-if="message.file">
+                  <div v-if="message.file[0]" class="reply-box bg-white" @click="openViewer(message, message.file[0])">
+                    <div v-if="imageViewExpanded"></div>
+                    <!-- <pre>{{ message.file }}</pre> -->
+
+                    <div class="">
+                      <div v-if="message.file[0].format == '.png' ||
+                        message.file[0].format == '.jpg' ||
+                        message.file[0].format == '.jpeg'
+                        " class="p-1" style="width: 200px">
+                        <img :src="message.file[0].url" style="width: 200px; height: 100px" class="img-fluid" alt="" />
+                      </div>
+                      <div v-if="message.file[0].format == '.pdf' ||
+                        message.file[0].format == '.docx' ||
+                        message.file[0].format == '.ppt'
+                        " class="bg-white rounded w-100 p-1">
+                        <a :href="message.file[0].url" target="_blank">
+                          <span class="iconify" data-icon="ant-design:file-pdf-filled" data-width="20"
+                            data-height="20"></span>
+                        </a>
+                      </div>
+                      <div v-if="message.file[0].format == '.mp4' ||
+                        message.file[0].format == '.webmb'
+                        " class="lightbluebg w-100 p-1">
+                        <video :src="message.file[0].url" style="width: 200px" class="img-fluid"></video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-if="message.post" class="py-1">
+                  <div class="reply-box rounded bg-white p-1">
+                    <p :style="{ fontSize: '0.7rem' }" class="m-0">
+                      {{ message.post }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="px-1 fs-10" style="color: #94969e">
+                  {{ convertDate(message.datetime) }}
+                </div>
               </div>
-              <div class="font-weight-bold fs-16 mb-3">
-                It’s Nice to chat with someone. 😊
-              </div>
-              <div class="fs-12 text-lighter">
-                Search for someone from the left menu<br />and start your conversation
+
+              <div v-if="message.entity === 'family'" class="d-flex justify-content-end text-primary"
+                :style="{ fontSize: '0.65rem' }">
+                Delivered
               </div>
             </div>
-            <!-- <div class="px-2" :style="{ backgroundColor: '#F0F0F0' }">
-            <VEmojiPicker v-show="showDialog" :style="{ width: '100%', height: 'auto' }" label-search="Search"
-              lang="pt-BR" @select="onSelectEmoji" />
-          </div> -->
-          <div class="chat-message-input d-flex justify-content-between align-items-center ml-2 my-3">
-                <div class="w-100">
-                <input v-model="message" class="form-control" type="text" placeholder="Message" />
-                </div>
-                <div v-if="showAudio">
-                <b-icon-mic-fill class="mx-2 text-blue fs-20" />
-                </div>
-                <button v-else class="btn">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M24 12C24 18.6271 18.6271 24 12 24C5.37288 24 1.90735e-06 18.6271 1.90735e-06 12C1.90735e-06 5.37288 5.37288 0 12 0C18.6271 0 24 5.37288 24 12ZM11.7317 6.72923C11.6457 6.81461 11.5772 6.91611 11.5304 7.02793C11.4835 7.13975 11.4592 7.25971 11.4587 7.38094C11.4582 7.50218 11.4816 7.62233 11.5276 7.73452C11.5735 7.84671 11.6411 7.94875 11.7265 8.03481L14.745 11.0769H7.03846C6.79365 11.0769 6.55886 11.1742 6.38575 11.3473C6.21264 11.5204 6.11539 11.7552 6.11539 12C6.11539 12.2448 6.21264 12.4796 6.38575 12.6527C6.55886 12.8258 6.79365 12.9231 7.03846 12.9231H14.745L11.7265 15.9652C11.6412 16.0513 11.5736 16.1535 11.5277 16.2657C11.4817 16.378 11.4584 16.4982 11.4589 16.6195C11.4594 16.7408 11.4839 16.8607 11.5308 16.9726C11.5777 17.0844 11.6462 17.186 11.7323 17.2713C11.8184 17.3567 11.9206 17.4243 12.0328 17.4702C12.1451 17.5162 12.2653 17.5395 12.3866 17.539C12.5079 17.5384 12.6279 17.514 12.7397 17.4671C12.8516 17.4202 12.9531 17.3517 13.0385 17.2656L17.6187 12.6502C17.7902 12.4773 17.8865 12.2436 17.8865 12C17.8865 11.7564 17.7902 11.5227 17.6187 11.3498L13.0385 6.73442C12.9531 6.64817 12.8515 6.57961 12.7396 6.53266C12.6276 6.48571 12.5075 6.46129 12.3862 6.46081C12.2648 6.46033 12.1445 6.48379 12.0322 6.52985C11.9199 6.5759 11.8178 6.64366 11.7317 6.72923Z"
-                      fill="#1070B7" />
-                  </svg>
-                </button>
+
+            <div>
+              <div v-if="filetype !== 'file'">
+                <PagesParentImageViewer v-if="imageExpanded && fileToPass.format !== '.pdf'" :message="message"
+                  :image-url="imageUrl" :filetype="filetype" :message-to-send="messageToSend" :image-expanded="false"
+                  @closeImagePreview="closeImagePreview" @sendImage="sendImage" />
               </div>
+              <!-- 
+                      <pre>{{ filetype }}</pre>
+
+                      <div v-if="filetype === 'file'">{{ imageUrl }}</div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat-message-input d-flex justify-content-between align-items-center pl-2 py-3">
+        <div class="w-100">
+          <input v-model="messageToSend.post" class="form-control" type="text" placeholder="Message" @keyup.enter="postMessage" />
+        </div>
+        <div v-if="showAudio">
+          <b-icon-mic-fill class="mx-2 text-blue fs-20" />
+        </div>
+        <div v-else @click.prevent="postMessage">
+          <b-icon-arrow-right-circle-fill class="text-blue pointer ml-2 fs-20" />
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
+import { DateTime } from "luxon";
 export default {
-    layout: 'parent',
-    data () {
-        return {
-            chats: [
-                {name: 'John Doe', id: 1}
-            ]
-        }
-    },
-    methods: {
-        handleClick(el) {
-            this.$router.push(`/parent/communication/${el.id}`)
-        }
+  layout: 'parent',
+  data() {
+    return {
+      messages: [],
+      messageToSend: {
+        post: "",
+        file: [],
+      },
+      reply: {},
     }
+  },
+  watch: {
+    '$route': {
+      async handler(val) {
+       if (this.$route.query.student_id) {
+        await this.getCommunications()
+        }
+      },
+      immediate: true
+    }
+  },
+  async created() {
+  },
+  methods: {
+    scrollToBottomOfChat() {
+      const objDiv = document.getElementById("chatView");
+
+      setTimeout(() => {
+        window.scrollTo(0, objDiv.scrollHeight)
+      }, 100);
+    },
+    async getCommunications() {
+      try {
+        const response = await this.$axios.get(
+          `communications/v3/class/student/${this.$route.query.student_id}/parent/chats/`
+        )
+        this.messages = response.data.data.results.reverse();
+        this.scrollToBottomOfChat();
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    replyMessage(message) {
+      this.reply = message;
+    },
+    convertDate(value) {
+      const newDate = DateTime.fromSQL(value).toFormat("t");
+      const meridiem = DateTime.fromSQL(value).toFormat("a");
+      return newDate + " " + meridiem;
+    },
+    async postMessage() {
+      const payload = {
+        message: this.messageToSend.post,
+        files: this.messageToSend.file,
+        reply_post_id: this.reply,
+        topic: "",
+      };
+
+      try {
+        await this.$axios.post(
+          `/communications/v3/class/student/${this.$route.query.student_id}/parent/chat/post/`,
+          payload
+        );
+
+        this.messageToSend.post = "";
+        this.messageToSend.file = [];
+        await this.getCommunications();
+        this.reply = {};
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  }
 }
 </script>
 
 <style scoped>
 .chat-view {
-    background: #f0f7fb;
-    min-height: 83vh;
-    overflow: auto;
+  background: #f0f7fb;
+  overflow: auto;
+  /* min-height: 83vh; */
 }
+
 .chat-message-input {
-    position: fixed;
-    bottom: 0;
-    background: #f0f7fb;
-    width: 98%;
+  position: fixed;
+  bottom: 0;
+  background: #f0f7fb;
+  width: 98%;
+}
+
+.chat-area {
+  min-height: 83vh;
+  overflow: auto;
+  padding: 50px 0px 80px 0px;
 }
 </style>

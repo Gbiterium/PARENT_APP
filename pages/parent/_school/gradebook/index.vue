@@ -30,7 +30,7 @@ export default {
     },
     methods: {
         handleclick(itme, index) {
-            this.$router.push(`/parent/gradebook/${index}`)
+            this.$router.push(`/parent/${this.$route.params.school}/gradebook/${index}`)
         }
     }
 }
