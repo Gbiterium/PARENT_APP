@@ -476,6 +476,10 @@ export default {
   background: #dc3545;
   border-radius: 50%;
 }
+.img-fluid {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
 
 .document {
   width: 36px;
