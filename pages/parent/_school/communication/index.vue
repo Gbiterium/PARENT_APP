@@ -275,7 +275,7 @@ export default {
 
       setTimeout(() => {
         window.scrollTo(0, objDiv.scrollHeight)
-      }, 200);
+      }, 100);
     },
     openViewer(message, file) {
       // this.$bvModal.show('modal-1')
