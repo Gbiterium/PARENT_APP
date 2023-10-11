@@ -11,8 +11,13 @@
         </div>
         <p class="fs-12">Already have account? <span class="text-blue pointer"
                 @click.prevent="$router.push('/auth/login')">Log in</span></p>
+                <div class="row mt-5">
+      <div class="col">
+        <div id="buttonDiv" class="googleresponsive"></div>
+      </div>
+    </div>
         <ValidationObserver ref="form">
-            <form class="mt-5">
+            <form class="mt-3">
                 <div class="row">
                     <div class="col-md-7">
                         <label class="form-control-label">First Name</label>
@@ -82,7 +87,7 @@ export default {
                 {
                     theme: 'outline',
                     size: 'large',
-                    width: '400px',
+                    width: '320px',
                     text: 'signup_with',
                 } // customization attributes
             )
@@ -114,4 +119,5 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  </style>

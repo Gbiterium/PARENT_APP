@@ -11,8 +11,13 @@
         </div>
         <p class="fs-12">Don’t have an account? <span class="text-blue pointer"
                 @click.prevent="$router.push('/auth/signup')">Sign Up</span></p>
+                <div class="row mt-5">
+      <div class="col">
+        <div id="buttonDiv" class="googleresponsive"></div>
+      </div>
+    </div>
         <ValidationObserver ref="form">
-            <form class="mt-5">
+            <form class="">
                 <div class="row">
                     <div class="col-md-7 mt-3">
                         <ValidationProviderWrapper :rules="['email', 'required']">
