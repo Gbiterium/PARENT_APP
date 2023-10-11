@@ -165,3 +165,8 @@ html {
     border-radius: 16px;
     background: #fff;
 }
+.custom-menu {
+  background: transparent !important;
+  border: none;
+  transform: translate3d(-15px, -150px, 0px) !important;
+}
