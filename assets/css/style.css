@@ -170,3 +170,9 @@ html {
   border: none;
   transform: translate3d(-15px, -150px, 0px) !important;
 }
+.emoji {
+  border: none !important;
+}
+.emoji-picker {
+  height: 250px !important;
+}

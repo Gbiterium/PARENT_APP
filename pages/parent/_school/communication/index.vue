@@ -104,6 +104,10 @@
         </div>
       </div>
       <div class="chat-message-input">
+        <div class="px-2" :style="{ backgroundColor: '#F0F0F0' }">
+            <VEmojiPicker v-show="showDialog" :style="{ width: '100%', height: 'auto' }" label-search="Search"
+              lang="pt-BR" @select="onSelectEmoji" />
+          </div>
         <div :style="{ postion: 'relative', backgroundColor: '#F4F6F8' }">
         <div v-if="reply.id" class="ml-4 p-1 reply-box-container"
               :style="{ position: '', bottom: '5rem', right: '35%' }">
@@ -129,19 +133,16 @@
               <div v-if="messageFiles.length" class="px-3 py-1">
                 <div v-for="(file, fileIndex) in messageFiles" :key="fileIndex"
                   class="btn btn-light text-dark bg-white p-1 mr-2">
-                  <!-- <span class="iconify" data-icon="feather:file"></span> -->
                   <b-icon-file-earmark />
                   <span class="" :style="{ fontSize: '0.7rem' }">{{
                     file.file_name
                   }}</span>
-                  <!-- <span class="text-dark fs-12 font-weight-bold mx-1">250kb</span> -->
                   <span class="" @click="deleteMessageFile(file, fileIndex)">
                     <b-icon-x class="fs-14 pointer text-danger" />
-                    <!-- <span class="iconify fs-16 pointer text-danger" data-icon="ci:off-outline-close"></span> -->
                   </span>
                 </div>
               </div>
-              <div v-if="loading" class="m-2 ml-5 spinner-border text-primary m-0" role="status">
+              <div v-if="loading" class="m-2 ml-5 spinner-border text-blue m-0" role="status">
                 <span class="sr-only mt-2"></span>
               </div>
             </div>
@@ -179,6 +180,9 @@
                         @change="previewImage('file')"
                       />
           </div>
+          <div class="mr-2 emoji-icon pointer">
+                <span class="pl-1 fs-18" @click="toogleDialogEmoji">😊</span>
+              </div>
         </div>
         <div v-if="showAudio">
           <b-icon-mic-fill class="mx-2 text-blue fs-20" />
@@ -194,8 +198,12 @@
 
 <script>
 import { DateTime } from "luxon";
+import { VEmojiPicker } from "v-emoji-picker";
 export default {
   layout: 'parent',
+  components: {
+    VEmojiPicker,
+  },
   data() {
     return {
       messages: [],
@@ -208,6 +216,7 @@ export default {
       fileContent: {},
       imageExpanded: false,
       targetFiles: [],
+      showDialog: false,
       messageFiles: []
     }
   },
@@ -226,8 +235,6 @@ export default {
                 return this.$store.getters["school/getSchoolByCode"](this.$route.params.school);
         },
     },
-  async created() {
-  },
   methods: {
     scrollToBottomOfChat() {
       const objDiv = document.getElementById("chatView");
@@ -235,6 +242,12 @@ export default {
       setTimeout(() => {
         window.scrollTo(0, objDiv.scrollHeight)
       }, 100);
+    },
+    onSelectEmoji(emoji) {
+      this.messageToSend.post += emoji.data;
+    },
+    toogleDialogEmoji() {
+      this.showDialog = !this.showDialog;
     },
     async getCommunications() {
       try {
@@ -262,6 +275,7 @@ export default {
         reply_post_id: this.reply.id,
         topic: "",
       };
+      this.showDialog = false
 
       try {
         await this.$axios.post(
@@ -353,10 +367,17 @@ export default {
 }
 .input-wrapper input {
   padding-right: calc(20px + 10px + 0.4rem);
+  padding-left: calc(20px + 10px + 0.4rem);
 }
 .attach-icon {
   position: absolute;
   right: -30px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.emoji-icon {
+  position: absolute;
+  left: 18px;
   top: 50%;
   transform: translate(-50%, -50%);
 }
