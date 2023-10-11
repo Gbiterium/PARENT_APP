@@ -83,25 +83,37 @@ export default {
     },
     watch: {
         school: {
-            async handler(val) {
-                if (val) {
-                    const academic_year = val["current_ academic_year"].year_id
+            async handler(newval, oldval) {
+                if (newval) {
+                    const academic_year = newval["current_ academic_year"].year_id
                     await this.getStudents(academic_year)
-        //             if (this.students.length > 0 && this.$route.name.split('-').length > 2) {
-        // this.selectedStudent = this.students[0]
-        // this.$router.replace({query: {
-        //         admission_id: this.selectedStudent.admission_id,
-        //         student_id: this.selectedStudent.class_student_id
-        //     }})
-        // }
+                    if (Object.keys(this.selectedStudent).length === 0) {
+          if (this.students.length > 0 && this.$route.name.includes('communication')) {
+            this.selectedStudent = this.students[0];
+            this.$router.push({
+              query: {
+                admission_id: this.selectedStudent.admission_id,
+                student_id: this.selectedStudent.class_student_id
+              }
+            });
+          }
+        } if (this.$route.name.includes('communication')) {
+          this.$router.push({
+            query: {
+              admission_id: this.selectedStudent.admission_id,
+              student_id: this.selectedStudent.class_student_id
+            }
+          });
+        }
                 }
             },
-            immediate: true
+            immediate: true,
         },
     },
     methods: {
         handleClick(item, index) {
             this.selectedIndex = index;
+            this.selectedStudent = item;
             this.$router.replace({query: {
                 admission_id: item.admission_id,
                 student_id: item.class_student_id
