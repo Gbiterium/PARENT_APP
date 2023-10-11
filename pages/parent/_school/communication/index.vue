@@ -43,7 +43,7 @@
                 }}</small>
                 <div v-if="message.file">
                   <div v-if="message.file[0]" class="bg-white" @click="openViewer(message, message.file[0])">
-                    <div v-if="imageViewExpanded"></div>
+                    <!-- <div v-if="imageViewExpanded"></div> -->
                     <!-- <pre>{{ message.file }}</pre> -->
 
                     <div class="">
@@ -274,11 +274,12 @@ export default {
       const objDiv = document.getElementById("chatView");
 
       setTimeout(() => {
-        window.scrollTo(0, objDiv.scrollHeight)
+        window.scrollTo(0, objDiv ? objDiv.scrollHeight : 10000)
       }, 100);
     },
     openViewer(message, file) {
       // this.$bvModal.show('modal-1')
+      window.scrollTo(0, 0)
       this.showDocsFile = true
       this.docsFile = file.url;
       this.previewImaged.img = file.url

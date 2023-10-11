@@ -19,13 +19,13 @@ export default function ({ $axios, $toast, store, redirect }) {
   $axios.onRequest((config) => {
     // store.commit('toggleRequestInProgress', true)
     // Logic for network timer
-    networkTimeOut = setTimeout(() => {
-      store.commit('toggleSlowNetwork', true);
-      setTimeout(() => {
-        store.commit('toggleSlowNetwork', false);
-      }, 7000);
+    // networkTimeOut = setTimeout(() => {
+    //   store.commit('toggleSlowNetwork', true);
+    //   setTimeout(() => {
+    //     store.commit('toggleSlowNetwork', false);
+    //   }, 7000);
 
-    }, 30000);
+    // }, 30000);
 
 
     if (store.state.auth.token) {
@@ -34,9 +34,9 @@ export default function ({ $axios, $toast, store, redirect }) {
     return config
   })
   $axios.onError((error) => {
-    store.commit('toggleRequestInProgress', false)
-    clearTimeout(networkTimeOut)
-    store.commit('toggleSlowNetwork', false)
+    // store.commit('toggleRequestInProgress', false)
+    // clearTimeout(networkTimeOut)
+    // store.commit('toggleSlowNetwork', false)
 
     if (!error.response) {
       if (process.client) {
