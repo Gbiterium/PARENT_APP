@@ -87,6 +87,7 @@ export default {
                 if (newval) {
                     const academic_year = newval["current_ academic_year"].year_id
                     await this.getStudents(academic_year)
+                }
                     if (Object.keys(this.selectedStudent).length === 0) {
           if (this.students.length > 0 && this.$route.name.includes('communication')) {
             this.selectedStudent = this.students[0];
@@ -105,7 +106,6 @@ export default {
             }
           });
         }
-                }
             },
             immediate: true,
         },

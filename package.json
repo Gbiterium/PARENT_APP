@@ -7,11 +7,13 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "node tools/copy-webviewer-files.js"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
+    "@pdftron/webviewer": "^8.2.0",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
     "cookie-universal-nuxt": "^2.2.2",
