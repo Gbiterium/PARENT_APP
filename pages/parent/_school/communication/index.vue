@@ -128,6 +128,7 @@
           <img :src="previewImaged.img" alt="" class="img-fluid" width="100%" height="100%" />
         </div>
       </div>
+    </div>
       <div class="chat-message-input">
         <div class="px-2" :style="{ backgroundColor: '#F4F6F8' }">
           <client-only>
@@ -209,7 +210,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
