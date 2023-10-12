@@ -425,7 +425,7 @@ export default {
 }
 
 .chat-area {
-  min-height: 83vh;
+  /* min-height: 83vh; */
   overflow: auto;
   padding: 50px 0px 100px 0px;
 }
