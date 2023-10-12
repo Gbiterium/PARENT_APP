@@ -70,7 +70,7 @@ export default {
 
 .cta {
   position: absolute;
-  bottom: 1em;
+  bottom: 0px;
   left: 50%;
     transform: translate(-50%, -50%);
 }
