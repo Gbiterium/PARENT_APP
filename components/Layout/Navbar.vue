@@ -89,7 +89,7 @@ export default {
                     await this.getStudents(academic_year)
                 }
                     if (Object.keys(this.selectedStudent).length === 0) {
-          if (this.students.length > 0 && this.$route.name.includes('communication')) {
+          if (this.students.length > 0 && this.$route.name.split('-').length > 2) {
             this.selectedStudent = this.students[0];
             this.$router.push({
               query: {
@@ -98,7 +98,7 @@ export default {
               }
             });
           }
-        } if (this.$route.name.includes('communication')) {
+        } if (this.$route.name.split('-').length > 2) {
           this.$router.push({
             query: {
               admission_id: this.selectedStudent.admission_id,

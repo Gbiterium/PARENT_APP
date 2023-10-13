@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import * as jose from 'jose'
 export default {
     data() {
         return {
@@ -114,7 +115,29 @@ export default {
             } finally {
                 this.loading = false
             }
+        },
+        async googleLogin(res) {
+     const profile =  jose.decodeJwt(res.credential)
+      try {
+        const localProfileObj = {
+          email: profile.email,
+          first_name: profile.given_name,
+          full_name: profile.name,
+          id_token: res.credential,
+          last_name: profile.family_name,
         }
+        const data = await this.$axios.$post(
+          '/api-auth/signup/google/',
+          localProfileObj
+        )
+
+        this.$store.commit('auth/SET_USER', data.data.user_details)
+        this.$store.commit('auth/SET_TOKEN', data.data.token)
+        this.$router.push('/schools')
+      } catch (error) {
+        console.log(error)
+      }
+    },
     }
 }
 </script>

@@ -20,10 +20,10 @@ export default {
     data() {
         return {
             menus: [
-                { name: 'Exercises', summary: '28 Undone', icon: require('@/assets/img/book.svg'), color: '#5B5DE9', background: 'linear-gradient(227deg, rgba(91, 93, 233, 0.15) -55.59%, rgba(91, 93, 233, 0.00) 94.23%)', route: `/parent/${this.$route.params.school}/exercises` },
                 { name: 'Communication', summary: '5 unread', icon: require('@/assets/img/communication.svg'), color: '#F77664', background: 'linear-gradient(227deg, rgba(247, 118, 100, 0.15) -55.59%, rgba(247, 118, 100, 0.00) 94.23%)', route: `/parent/${this.$route.params.school}/communication` },
-                { name: 'Finance', summary: '3 Open Invoice', icon: require('@/assets/img/finance.svg'), color: '#FFD057', background: 'linear-gradient(227deg, rgba(255, 208, 87, 0.15) -55.59%, rgba(255, 208, 87, 0.00) 94.23%)', route: `/parent/${this.$route.params.school}` },
                 { name: 'Report Card', summary: '20 Files', icon: require('@/assets/img/report.svg'), color: '#649FF7', background: 'linear-gradient(227deg, rgba(100, 159, 247, 0.18) -55.59%, rgba(100, 159, 247, 0.00) 94.23%)', route: `/parent/${this.$route.params.school}/report-card` },
+                { name: 'Exercises', summary: '28 Undone', icon: require('@/assets/img/book.svg'), color: '#5B5DE9', background: 'linear-gradient(227deg, rgba(91, 93, 233, 0.15) -55.59%, rgba(91, 93, 233, 0.00) 94.23%)', route: `/parent/${this.$route.params.school}/exercises` },
+                { name: 'Finance', summary: '3 Open Invoice', icon: require('@/assets/img/finance.svg'), color: '#FFD057', background: 'linear-gradient(227deg, rgba(255, 208, 87, 0.15) -55.59%, rgba(255, 208, 87, 0.00) 94.23%)', route: `/parent/${this.$route.params.school}` },
                 { name: 'Gradebook', summary: '40 Entries', icon: require('@/assets/img/gradebook.svg'), color: '#D357FF', background: 'linear-gradient(227deg, rgba(211, 87, 255, 0.15) -55.59%, rgba(211, 87, 255, 0.00) 94.23%)', route: `/parent/${this.$route.params.school}/gradebook` },
                 { name: 'Attendance', summary: 'View Details', icon: require('@/assets/img/attendance.svg'), color: '#FF5789', background: 'linear-gradient(227deg, rgba(255, 87, 137, 0.15) -55.59%, rgba(255, 87, 137, 0.00) 94.23%)', route: `/parent${this.$route.params.school}` },
             ]

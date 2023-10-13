@@ -117,6 +117,19 @@ export default {
         this.loading = false
       }
     },
+    async googleLogin(response) {
+      try {
+        const data = await this.$axios.$post("/api-auth/login/google/", {
+          id_token: response.credential,
+        });
+        this.$store.commit("auth/SET_USER", data.data.user_details);
+        this.$store.commit("auth/SET_TOKEN", data.data.token);
+        this.$cookies.set('auth-token', data.data.token)
+        this.$router.push('/schools')
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 }
 </script>

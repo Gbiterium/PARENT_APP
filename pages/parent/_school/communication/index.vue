@@ -38,7 +38,7 @@
                 </p>
               </div>
               <div class="bg-white">
-                <small class="text-primary font-weight-bold fs-10 p-1">{{
+                <small v-if="message.entity !== 'family'" class="text-primary font-weight-bold fs-14 p-1">{{
                   message.name
                 }}</small>
                 <div v-if="message.file">
@@ -70,23 +70,23 @@
                     </div>
                   </div>
                 </div>
-                <div v-if="message.post" class="py-1">
-                  <div class="rounded bg-white p-1">
-                    <p :style="{ fontSize: '0.7rem' }" class="m-0">
+                <div v-if="message.post">
+                  <div class="rounded bg-white px-1">
+                    <p class="m-0 fs-14">
                       {{ message.post }}
                     </p>
                   </div>
                 </div>
 
-                <div class="px-1 fs-10" style="color: #94969e">
+                <div class="px-1 m-0 fs-12 d-flex justify-content-end ml-5" style="color: #94969e">
                   {{ convertDate(message.datetime) }}
+                  <div v-if="message.entity === 'family'" class="text-primary ml-1">
+                    <!-- Delivered -->
+                    <b-icon-check-all class="fs-14" />
+                  </div>
                 </div>
               </div>
 
-              <div v-if="message.entity === 'family'" class="d-flex justify-content-end text-primary"
-                :style="{ fontSize: '0.65rem' }">
-                Delivered
-              </div>
             </div>
           </div>
         </div>
@@ -128,7 +128,6 @@
           <img :src="previewImaged.img" alt="" class="img-fluid" width="100%" height="100%" />
         </div>
       </div>
-    </div>
       <div class="chat-message-input">
         <div class="px-2" :style="{ backgroundColor: '#F4F6F8' }">
           <client-only>
@@ -210,6 +209,7 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -331,7 +331,7 @@ export default {
     convertDate(value) {
       const newDate = DateTime.fromSQL(value).toFormat("t");
       const meridiem = DateTime.fromSQL(value).toFormat("a");
-      return newDate + " " + meridiem;
+      return newDate;
     },
     async postMessage() {
       const payload = {
@@ -414,7 +414,7 @@ export default {
 .chat-view {
   background: #f0f7fb;
   overflow: auto;
-  /* min-height: 83vh; */
+  min-height: 83vh;
 }
 
 .chat-message-input {

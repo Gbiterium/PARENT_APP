@@ -1,35 +1,90 @@
 <template>
     <div class="container" style="padding-top: 4rem;">
-        <div class="row">
+        <div v-if="loading">
+            <b-skeleton class="mt-3" width="100%" height="78px"></b-skeleton>
+            <b-skeleton class="mt-3" width="100%" height="78px"></b-skeleton>
+            <b-skeleton class="mt-3" width="100%" height="78px"></b-skeleton>
+        </div>
+        <div v-else>
+        <div v-if="reports.length > 0 && $route.query.student_id" class="row">
         <div v-for="(el, index) in reports" :key="index" class="col-md-4 mb-2">
             <div class="card">
                 <div class="m-3">
-                    <div class="fs-14 slate-dark font-weight-600">{{ el.name }}</div>
+                    <div class="fs-14 slate-dark font-weight-600 text-capitalize">{{ el.name }}</div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="fs-12"><span class="text-grey">Uploaded on: </span><span class="text-blue">{{ el.created_at }}</span></div>
+                        <div class="fs-12"><span class="text-grey">Uploaded on: </span><span class="text-blue">{{ formatDate(el.created_on) }}</span></div>
                         <div class="icon-wrapper d-flex justify-content-center align-items-center pointer">
-                            <b-icon-download class="text-blue fs-20" />
+                            <b-icon-download class="text-blue fs-20" @click.prevent="downloadFile(el)" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         </div>
+        <!-- <div v-else class="d-flex justify-content-center align-items-center">
+            <img src="@/assets/img/empty-list.svg" />
+        </div> -->
+        </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { DateTime } from 'luxon'
 export default {
     layout: 'parent',
     data() {
         return {
-            reports: [
-                {name: '1st Term Mid-Week Report Card', created_at: '12/11/2021'},
-                {name: '1st Term Mid-Week Report Card', created_at: '12/11/2021'},
-                {name: '1st Term Mid-Week Report Card', created_at: '12/11/2021'},
-                {name: '1st Term Mid-Week Report Card', created_at: '12/11/2021'},
-            ]
+            reports: [],
+            loading: false
         }
+    },
+    watch: {
+    '$route': {
+      async handler(val) {
+        if (this.$route.query.student_id) {
+          await this.getReportCard()
+        }
+      },
+      immediate: true
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+        this.loading = true
+    }, 200)
+    this.loading = false
+  },
+    methods: {
+        async getReportCard() {
+            try {
+                this.loading = true
+                const { data } = await this.$axios.get(`/util/v2/mobile/reportcards/${this.$route.query.student_id}`)
+                this.reports = data.data.results
+            } catch (error) {
+                console.log(error)
+            } finally {
+                this.loading = false
+            }
+        },
+        async downloadFile(file) {
+      try {
+        const response = await axios.get(file.file_url, {
+          responseType: "blob",
+        });
+        const blob = new Blob([response.data]);
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `report.pdf`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    formatDate(date) {
+        return DateTime.fromSQL(date).toFormat("f");
+    },
     }
 }
 </script>
