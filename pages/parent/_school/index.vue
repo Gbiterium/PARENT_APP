@@ -17,6 +17,7 @@
 <script>
 export default {
     layout: 'parent',
+    // middleware: 'route-guard',
     data() {
         return {
             menus: [

@@ -26,6 +26,7 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
     layout: 'parent',
+    // middleware: 'route-guard',
     data() {
         return {
             loading: false
