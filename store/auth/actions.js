@@ -9,6 +9,7 @@ const actions = {
                     path: '/',
                     maxAge: 60 * 60 * 24 * 7
                 })
+                this.$router.push('/schools')
             }
         } catch (error) {
             console.log(error)

@@ -10,11 +10,11 @@
                         {{ $route.name.split("-")[2] }}
                     </div>
                     <div v-else class="">
-                        <div class="fs-12 font-weight-light">Welcome back</div>
-                        <div v-if="getUser" class="fs-20 font-weight-600">
+                        <div v-if="$route.fullPath.includes('schools')" class="fs-12 font-weight-light">Welcome back</div>
+                        <div v-if="getUser && $route.fullPath.includes('schools')" class="fs-20 font-weight-600">
                             {{ getUser.first_name }} {{ getUser.last_name }}
                         </div>
-                        <div v-if="$route.fullPath.includes('parent') && school" class="fs-14 font-weight-medium">{{
+                        <div v-if="$route.fullPath.includes('parent') && school" class="fs-18 font-weight-medium">{{
                             school.name }}</div>
                     </div>
                     <div class="pointer d-flex align-items-center">
@@ -99,7 +99,7 @@ export default {
               }
             });
           }
-        } if (this.$route.name.split('-').length > 2) {
+        } if (this.$route.name.split('-').length > 2 && newval !== oldval) {
           this.$router.push({
             query: {
               admission_id: this.selectedStudent.admission_id,

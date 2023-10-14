@@ -4,7 +4,7 @@ import 'izitoast/dist/css/iziToast.css';
 const toastVer = iziToast;
 
 iziToast.settings({
-  position: 'topCenter',
+  position: 'bottomCenter',
   progressBar: false,
 });
 

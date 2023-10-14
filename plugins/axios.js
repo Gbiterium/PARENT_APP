@@ -2,7 +2,7 @@
 import qs from 'qs';
 
 
-export default function ({ $axios, $toast, store, redirect }) {
+export default function ({ $axios, app, store, redirect }) {
   // $axios.defaults.timeout = 1000 * 5 // t - 5s
   // $axios.defaults.onDownloadProgress =  onDownload
 
@@ -40,7 +40,7 @@ export default function ({ $axios, $toast, store, redirect }) {
 
     if (!error.response) {
       if (process.client) {
-        $toast({
+        app.$toast({
           type: 'error',
           text: 'Network Down: Unable to contact server',
         })
@@ -52,7 +52,7 @@ export default function ({ $axios, $toast, store, redirect }) {
       store.dispatch('auth/logout')
       redirect('/auth/login?redirect=true');
       if (process.client) {
-        $toast({
+        app.$toast({
           type: 'error',
           text: error.response.data.message,
         })
@@ -64,7 +64,7 @@ export default function ({ $axios, $toast, store, redirect }) {
 
     if (error.response && error.response.status === 400) {
       if (process.client) {
-        $toast({
+        app.$toast({
           type: 'error',
           text: error.response.data.message,
         })
@@ -75,7 +75,7 @@ export default function ({ $axios, $toast, store, redirect }) {
 
     if (error.response && error.response.status === 404) {
       if (process.client) {
-        $toast({
+        app.$toast({
           type: 'error',
           text: 'Not Found',
         })
@@ -84,7 +84,7 @@ export default function ({ $axios, $toast, store, redirect }) {
 
     } else if (error.response && error.response.data) {
       if (process.client) {
-        $toast({
+        app.$toast({
           type: 'error',
           text: (error.response.data.message) || 'Whoops Something Went Wrong',
         })
@@ -93,7 +93,7 @@ export default function ({ $axios, $toast, store, redirect }) {
     }
     else {
       if (process.client) {
-        $toast({
+        app.$toast({
           type: 'error',
           text: 'Whoops Something Went Wrong',
         })
@@ -105,7 +105,7 @@ export default function ({ $axios, $toast, store, redirect }) {
 
     if (error.message) {
       if (process.client) {
-        $toast({
+        app.$toast({
           type: 'error',
           text: error.message,
         })
@@ -115,7 +115,7 @@ export default function ({ $axios, $toast, store, redirect }) {
     }
 
     if (process.client) {
-      $toast({
+      app.$toast({
         type: 'error',
         text: 'Whoops Something Went Wrong',
       })
@@ -131,7 +131,7 @@ export default function ({ $axios, $toast, store, redirect }) {
     // clearTimeout(networkTimeOut)
     // store.commit('toggleRequestInProgress', false)
     // if (response.status === 200 || response.status === 201) {
-    //   $toast({
+    //   app.$toast({
     //     type: 'success',
     //     text: response.data.message,
     //   })

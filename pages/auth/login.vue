@@ -108,7 +108,6 @@ export default {
           username: this.email,
           password: this.password,
         });
-        this.$router.push('/schools')
       } catch (error) {
         if (error.response && error.response.status === 403) {
           this.$router.push('/auth/verify-account')
