@@ -46,7 +46,8 @@
                                 : require(`~/assets/img/${el.gender === 'male' ? 'male' : 'female'
                                     }-young.jpeg`)" alt="avatar" />
                             <div class="text-white ml-2">
-                                <div class="fs-11 font-weight-medium name">{{ el.name }}</div>
+                                <div class="fs-11 font-weight-medium">{{ el.name.split(" ").slice(0, 2).join(" ") }}</div>
+                                <div class="fs-11 font-weight-medium">{{ el.name.split(" ")[2] }}</div>
                                 <div class="fs-10">{{ el.class_name }}</div>
                             </div>
                         </div>
@@ -88,8 +89,8 @@ export default {
                     const academic_year = newval["current_ academic_year"].year_id
                     await this.getStudents(academic_year)
                 }
-                    if (Object.keys(this.selectedStudent).length === 0) {
-          if (this.students.length > 0 && this.$route.name.split('-').length > 2) {
+                    if (Object.keys(this.selectedStudent).length === 0 && this.$route.name.split('-').length > 2) {
+          if (this.students.length > 0) {
             this.selectedStudent = this.students[0];
             this.$router.push({
               query: {
@@ -181,13 +182,13 @@ export default {
     border: 1px solid #FFF;
     background: #0A4C90;
     box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.20);
-    width: 150px;
+    width: 180px;
 }
 
 .not-selected {
     border-radius: 8px;
     background: #0A4C90;
-    width: 150px;
+    width: 180px;
     opacity: 0.5;
 }
 

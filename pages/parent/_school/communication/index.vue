@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-3">
+  <div v-if="$route.query.student_id" class="pt-3">
     <div class="chat-view">
       <div v-if="!messages.length && !showDocsFile"
         class="d-flex flex-column align-items-center justify-content-center text-center chat-area">
@@ -251,6 +251,7 @@ export default {
         img: "",
       },
       loading: false,
+      isloading: true,
     }
   },
   watch: {
@@ -269,6 +270,11 @@ export default {
       return this.$store.getters["school/getSchoolByCode"](this.$route.params.school);
     },
   },
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.isloading = false
+  //   }, 1000)
+  // },
   methods: {
     scrollToBottomOfChat() {
       const objDiv = document.getElementById("chatView");
@@ -425,8 +431,8 @@ export default {
 }
 
 .chat-area {
-  /* min-height: 83vh; */
-  overflow: auto;
+  min-height: 83vh;
+  /* overflow: auto; */
   padding: 50px 0px 100px 0px;
 }
 

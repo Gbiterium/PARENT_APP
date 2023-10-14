@@ -1,12 +1,12 @@
 <template>
-    <div class="container" style="padding-top: 4rem;">
+    <div v-if="$route.query.student_id" class="container" style="padding-top: 4rem;">
         <div v-if="loading">
             <b-skeleton class="mt-3" width="100%" height="78px"></b-skeleton>
             <b-skeleton class="mt-3" width="100%" height="78px"></b-skeleton>
             <b-skeleton class="mt-3" width="100%" height="78px"></b-skeleton>
         </div>
-        <div v-else>
-        <div v-if="reports.length > 0 && $route.query.student_id" class="row">
+        <!-- <div v-else> -->
+        <div v-if="reports.length > 0 && !loading" class="row">
         <div v-for="(el, index) in reports" :key="index" class="col-md-4 mb-2">
             <div class="card">
                 <div class="m-3">
@@ -21,9 +21,14 @@
             </div>
         </div>
         </div>
-        <!-- <div v-else class="d-flex justify-content-center align-items-center">
+        <!-- </div> -->
+        <div v-if="reports && reports.length === 0 && !loading" class="no-content">
+            <div>
             <img src="@/assets/img/empty-list.svg" />
-        </div> -->
+            <div class="fs-14 text-black mt-2 text-capitalize">
+            no results found
+          </div>
+          </div>
         </div>
     </div>
 </template>
@@ -36,7 +41,7 @@ export default {
     data() {
         return {
             reports: [],
-            loading: false
+            loading: true
         }
     },
     watch: {
@@ -48,12 +53,6 @@ export default {
       },
       immediate: true
     }
-  },
-  mounted() {
-    setTimeout(() => {
-        this.loading = true
-    }, 200)
-    this.loading = false
   },
     methods: {
         async getReportCard() {
@@ -95,5 +94,11 @@ export default {
     border: 0.5px solid #D8EDF5;
     width: 36px;
     height: 36px;
+}
+.no-content {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>
