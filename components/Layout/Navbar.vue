@@ -99,7 +99,7 @@ export default {
               }
             });
           }
-        } if (this.$route.name.split('-').length > 2 && newval !== oldval) {
+        } if (this.$route.name.split('-').length > 2) {
           this.$router.push({
             query: {
               admission_id: this.selectedStudent.admission_id,
