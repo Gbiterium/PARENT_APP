@@ -20,7 +20,7 @@
                     <div class="pointer d-flex align-items-center">
                         <img v-if="$route.name.split('-').length > 2" class="pointer mr-2"
                             src="@/assets/img/house.svg" @click.prevent="$router.push(`/parent/${school.code}`)" />
-                        <b-dropdown variant="link" toggle-class="text-decoration-none" no-caret>
+                        <b-dropdown variant="link" toggle-class="custom-toggle text-decoration-none" no-caret>
                             <template #button-content>
                                 <b-icon-gear-fill class="text-light-blue" />
                             </template>
@@ -85,7 +85,7 @@ export default {
     watch: {
         school: {
             async handler(newval, oldval) {
-                if (newval) {
+                if (newval && newval !== oldval) {
                     const academic_year = newval["current_ academic_year"].year_id
                     await this.getStudents(academic_year)
                 }
@@ -194,4 +194,10 @@ export default {
 
 .students {
     overflow: auto;
-}</style>
+}
+.custom-toggle {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+</style>

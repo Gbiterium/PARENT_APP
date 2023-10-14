@@ -1,7 +1,21 @@
 <template>
   <div v-if="$route.query.student_id" class="pt-3">
     <div class="chat-view">
-      <div v-if="!messages.length && !showDocsFile"
+      <!-- <div v-if="isLoading">
+        <b-skeleton class="mt-5" width="80%" height="50px"></b-skeleton>
+        <div class="d-flex justify-content-end">
+            <b-skeleton class="mt-2" width="80%" height="50px"></b-skeleton>
+            </div>
+            <b-skeleton class="mt-2" width="80%" height="50px"></b-skeleton>
+            <div class="d-flex justify-content-end">
+            <b-skeleton class="mt-2" width="80%" height="50px"></b-skeleton>
+            </div>
+            <b-skeleton class="mt-2" width="80%" height="50px"></b-skeleton>
+            <div class="d-flex justify-content-end">
+            <b-skeleton class="mt-2" width="80%" height="50px"></b-skeleton>
+            </div>
+      </div> -->
+      <div v-if="!messages.length && !showDocsFile && !isLoading"
         class="d-flex flex-column align-items-center justify-content-center text-center chat-area">
         <div class="mb-4">
           <img class="img-fluid" src="@/assets/img/empty-chats.svg" />
@@ -251,7 +265,7 @@ export default {
         img: "",
       },
       loading: false,
-      isloading: true,
+      isLoading: false,
     }
   },
   watch: {
@@ -322,6 +336,7 @@ export default {
     },
     async getCommunications() {
       try {
+        this.isLoading = true
         const response = await this.$axios.get(
           `communications/v3/class/student/${this.$route.query.student_id}/parent/chats/`
         )
@@ -329,6 +344,8 @@ export default {
         this.scrollToBottomOfChat();
       } catch (error) {
         console.log(error)
+      } finally {
+        this.isLoading = false
       }
     },
     replyMessage(message) {
@@ -402,7 +419,6 @@ export default {
           formData
         );
         this.messageFiles.push(data);
-        console.log(this.messageFiles, 'hello')
       } catch (error) {
         console.log(error);
       } finally {
