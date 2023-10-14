@@ -38,7 +38,6 @@
 
 <script>
 export default {
-    middleware: 'route-guard',
     data () {
         return {
             school_code: '',
