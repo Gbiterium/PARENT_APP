@@ -20,15 +20,16 @@
                     <div class="pointer d-flex align-items-center">
                         <img v-if="$route.name.split('-').length > 2" class="pointer mr-2"
                             src="@/assets/img/house.svg" @click.prevent="$router.push(`/parent/${school.code}`)" />
-                        <b-dropdown variant="link" toggle-class="custom-toggle text-decoration-none" no-caret>
+                        <!-- <b-dropdown variant="link" toggle-class="custom-toggle text-decoration-none" no-caret>
                             <template #button-content>
                                 <b-icon-gear-fill class="text-light-blue" />
                             </template>
                             <b-dropdown-item class="fs-14" href="#">My Profile</b-dropdown-item>
                             <b-dropdown-item href="#"><button class="btn btn-danger" @click="logout()">Log out
                                 </button></b-dropdown-item>
-                        </b-dropdown>
+                        </b-dropdown> -->
                         <!-- <img src="@/assets/img/default_profile.png" /> -->
+                        <b-icon-gear-fill class="text-light-blue" @click.prevent="$emit('show-dropdown')" />
                     </div>
                 </div>
                 <div v-if="$route.name.split('-').length > 2"
@@ -69,7 +70,8 @@ export default {
             ],
             selectedIndex: 0,
             selectedStudent: {},
-            loading: false
+            loading: false,
+            show: false
         }
     },
     computed: {
