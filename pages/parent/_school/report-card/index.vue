@@ -14,7 +14,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="fs-12"><span class="text-grey">Uploaded on: </span><span class="text-blue">{{ formatDate(el.created_on) }}</span></div>
                         <div class="icon-wrapper d-flex justify-content-center align-items-center pointer">
-                            <b-icon-download class="text-blue fs-20" @click.prevent="downloadFile(el)" />
+                            <b-spinner v-if="downloading === el" class="text-blue" label="Spinning"></b-spinner>
+                            <b-icon-download v-else class="text-blue fs-20" @click.prevent="downloadFile(el)" />
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,8 @@ export default {
     data() {
         return {
             reports: [],
-            loading: true
+            loading: true,
+            downloading: null,
         }
     },
     watch: {
@@ -68,6 +70,7 @@ export default {
         },
         async downloadFile(file) {
       try {
+        this.downloading = file
         const response = await axios.get(file.file_url, {
           responseType: "blob",
         });
@@ -79,6 +82,8 @@ export default {
         URL.revokeObjectURL(link.href);
       } catch (e) {
         console.error(e);
+      } finally {
+        this.downloading = null
       }
     },
     formatDate(date) {
