@@ -3,7 +3,7 @@
         <LayoutNavbar class="site-nav" @show-dropdown="showDropdown" />
         <Nuxt />
         <LayoutFooter v-if="$route.name.split('-').length < 3" />
-        <LayoutNavBarDropdown v-if="show" />
+        <LayoutNavBarDropdown v-if="show" @close-dropdown="closeDropdown" />
     </div>
 </template>
 
@@ -22,6 +22,9 @@ export default {
     methods: {
         showDropdown() {
             this.show = !this.show
+        },
+        closeDropdown () {
+            this.show = false
         }
     }
 }

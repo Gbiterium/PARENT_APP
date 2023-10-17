@@ -37,6 +37,7 @@ export default {
     { src: '~/plugins/vee-validate', mode: 'client' },
     { src: '~/plugins/iziToast', mode: 'client' },
     '~/plugins/persistedState.client.js',
+    { src: "@/plugins/vClickOutside", ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

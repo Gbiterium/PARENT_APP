@@ -1,13 +1,14 @@
 <template>
     <div>
-        <div :class="$route.name.split('-').length > 2 ? 'top-nav2 pt-4' : 'top-nav py-4'">
+        <div :class="pageRoute.length > 2 ? 'top-nav2 py-4' : 'top-nav py-4'">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between text-light-blue">
                     <div class="d-flex align-items-center">
-                        <b-icon-bell-fill class="pointer" />
+                        <b-icon-bell-fill v-if="$route.name.includes('schools')" class="pointer" />
+                        <b-icon-chevron-left v-else class="fs-20 pointer" @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" />
                     </div>
-                    <div v-if="$route.name.split('-').length > 2" class="fs-20 font-weight-600 text-capitalize">
-                        {{ $route.name.split("-")[2] }}
+                    <div v-if="pageRoute.length > 2" class="fs-20 font-weight-600 text-capitalize">
+                        {{ pageRoute[2].includes('-') ? pageRoute[2].replace(/-/g, ' ') : pageRoute[2] }}
                     </div>
                     <div v-else class="">
                         <div v-if="$route.fullPath.includes('schools')" class="fs-12 font-weight-light">Welcome back</div>
@@ -18,7 +19,7 @@
                             school.name }}</div>
                     </div>
                     <div class="pointer d-flex align-items-center">
-                        <img v-if="$route.name.split('-').length > 2" class="pointer mr-2"
+                        <img v-if="pageRoute.length > 2" class="pointer mr-2"
                             src="@/assets/img/house.svg" @click.prevent="$router.push(`/parent/${school.code}`)" />
                         <!-- <b-dropdown variant="link" toggle-class="custom-toggle text-decoration-none" no-caret>
                             <template #button-content>
@@ -29,11 +30,11 @@
                                 </button></b-dropdown-item>
                         </b-dropdown> -->
                         <!-- <img src="@/assets/img/default_profile.png" /> -->
-                        <b-icon-gear-fill class="text-light-blue" @click.prevent="$emit('show-dropdown')" />
+                        <b-icon-gear-fill class="text-light-blue fs-20 mr-3" @click.prevent="$emit('show-dropdown')" />
                     </div>
                 </div>
-                <div v-if="$route.name.split('-').length > 2"
-                    class="students my-3 d-flex align-items-center pointer">
+                <div v-if="pageRoute.length === 3"
+                    class="students mt-3 d-flex align-items-center pointer">
                     <div v-if="loading" class="d-flex">
                         <b-skeleton class="mr-3" width="150px" height="58px"></b-skeleton>
                         <b-skeleton class="mr-2" width="150px" height="58px"></b-skeleton>
@@ -83,6 +84,10 @@ export default {
                 return
             }
         },
+        pageRoute() {
+            const route = this.$route.path.split('/')
+            return route.filter((el) => el !== "")
+        }
     },
     watch: {
         school: {
@@ -91,7 +96,7 @@ export default {
                     const academic_year = newval["current_ academic_year"].year_id
                     await this.getStudents(academic_year)
                 }
-                    if (Object.keys(this.selectedStudent).length === 0 && this.$route.name.split('-').length > 2) {
+                    if (Object.keys(this.selectedStudent).length === 0 && this.pageRoute.length === 3) {
           if (this.students.length > 0) {
             this.selectedStudent = this.students[0];
             this.$router.push({
@@ -101,7 +106,7 @@ export default {
               }
             });
           }
-        } if (this.$route.name.split('-').length > 2) {
+        } if (this.pageRoute.length === 3) {
           this.$router.push({
             query: {
               admission_id: this.selectedStudent.admission_id,

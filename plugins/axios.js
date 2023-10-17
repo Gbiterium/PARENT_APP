@@ -2,7 +2,7 @@
 import qs from 'qs';
 
 
-export default function ({ $axios, app, store, redirect }) {
+export default function ({ $axios, $cookies, app, store, redirect }) {
   // $axios.defaults.timeout = 1000 * 5 // t - 5s
   // $axios.defaults.onDownloadProgress =  onDownload
 
@@ -27,9 +27,9 @@ export default function ({ $axios, app, store, redirect }) {
 
     // }, 30000);
 
-
-    if (store.state.auth.token) {
-      config.headers.common.Authorization = `Bearer ${store.state.auth.token}`
+    const token = $cookies.get('auth-token')
+    if (token) {
+      config.headers.common.Authorization = `Bearer ${token}`
     }
     return config
   })

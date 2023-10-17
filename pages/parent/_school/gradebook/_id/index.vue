@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="padding-top: 4rem;">
+    <div class="container" style="">
         <div class="font-weight-600">Entries (8)</div>
         <div class="card p-3 mt-3">
         <div v-for="(el, index) in grades" :key="index">

@@ -16,7 +16,7 @@
             </div>
       </div> -->
       <div v-if="!messages.length && !showDocsFile && !isLoading"
-        class="d-flex flex-column align-items-center justify-content-center text-center chat-area">
+        class="d-flex flex-column align-items-center justify-content-center text-center chat-area no-chat">
         <div class="mb-4">
           <img class="img-fluid" src="@/assets/img/empty-chats.svg" />
         </div>
@@ -52,7 +52,7 @@
                 </p>
               </div>
               <div class="bg-white">
-                <small v-if="message.entity !== 'family'" class="text-primary font-weight-bold fs-14 p-1">{{
+                <small class="text-primary font-weight-bold fs-12 p-1">{{
                   message.name
                 }}</small>
                 <div v-if="message.file">
@@ -92,7 +92,7 @@
                   </div>
                 </div>
 
-                <div class="px-1 m-0 fs-12 d-flex justify-content-end ml-5" style="color: #94969e">
+                <div class="px-1 m-0 fs-10 d-flex justify-content-end ml-5" style="color: #94969e">
                   {{ convertDate(message.datetime) }}
                   <div v-if="message.entity === 'family'" class="text-primary ml-1">
                     <!-- Delivered -->
@@ -142,7 +142,7 @@
           <img :src="previewImaged.img" alt="" class="img-fluid" width="100%" height="100%" />
         </div>
       </div>
-      <div class="chat-message-input">
+      <div v-if="!isLoading" class="chat-message-input">
         <div class="px-2" :style="{ backgroundColor: '#F4F6F8' }">
           <client-only>
             <VEmojiPicker v-show="showDialog" :style="{ width: '100%', height: 'auto', backgroundColor: '#F4F6F8' }"
@@ -352,10 +352,28 @@ export default {
       this.reply = message;
     },
     convertDate(value) {
-      const newDate = DateTime.fromSQL(value).toFormat("t");
-      const meridiem = DateTime.fromSQL(value).toFormat("a");
-      return newDate;
-    },
+  const dateTime = DateTime.fromSQL(value);
+  const now = DateTime.now();
+  const diffInDays = now.diff(dateTime, 'days').as('days');
+
+  // Check if the date is not today
+  if (!dateTime.hasSame(now, 'day')) {
+    if (dateTime.hasSame(now.minus({ days: 1 }), 'day')) {
+      return 'Yesterday at ' + dateTime.toFormat('t');
+    } else {
+    // For other dates, display "X days ago" and the time
+    return `${Math.floor(diffInDays)} days ago`;
+  }
+  }
+
+  // Check if the date is not within the current week
+  if (!dateTime.hasSame(now, 'week')) {
+    return dateTime.toFormat('LLLL d, y') + ' at ' + dateTime.toFormat('t');
+  }
+
+  // If the date is today and within the current week, return just the time
+  return dateTime.toFormat('t');
+},
     async postMessage() {
       const payload = {
         message: this.messageToSend.post,
@@ -434,9 +452,9 @@ export default {
 
 <style scoped>
 .chat-view {
-  background: #f0f7fb;
+  /* background: #f0f7fb; */
   overflow: auto;
-  min-height: 83vh;
+  /* min-height: 83vh; */
 }
 
 .chat-message-input {
@@ -447,9 +465,12 @@ export default {
 }
 
 .chat-area {
-  min-height: 83vh;
+  /* min-height: 83vh; */
   /* overflow: auto; */
   padding: 50px 0px 100px 0px;
+}
+.no-chat {
+  min-height: 80vh;
 }
 
 .input-wrapper {

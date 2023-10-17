@@ -25,7 +25,9 @@
         <!-- </div> -->
         <div v-if="reports && reports.length === 0 && !loading" class="no-content">
             <div>
+              <div class="d-flex justify-content-center">
             <img src="@/assets/img/empty-list.svg" />
+            </div>
             <div class="fs-14 text-black mt-2 text-capitalize">
             no results found
           </div>
