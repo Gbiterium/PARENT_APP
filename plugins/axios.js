@@ -48,19 +48,19 @@ export default function ({ $axios, app, store, redirect }) {
       return Promise.reject(error)
     }
 
-    if (error.response && error.response.status === 401) {
-      store.dispatch('auth/logout')
-      redirect('/auth/login?redirect=true');
-      if (process.client) {
-        app.$toast({
-          type: 'error',
-          text: error.response.data.message,
-        })
-      }
+    // if (error.response && error.response.status === 401) {
+    //   store.dispatch('auth/logout')
+    //   redirect('/auth/login?redirect=true');
+    //   if (process.client) {
+    //     app.$toast({
+    //       type: 'error',
+    //       text: error.response.data.message,
+    //     })
+    //   }
 
 
-      return Promise.reject(error)
-    }
+    //   return Promise.reject(error)
+    // }
 
     if (error.response && error.response.status === 400) {
       if (process.client) {

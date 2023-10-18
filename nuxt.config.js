@@ -1,6 +1,5 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  ssr: false,
   head: {
     title: 'parent-app',
     meta: [
@@ -28,16 +27,16 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [ '@/assets/css/style.css'
   ],
-  router: {
-    middleware: 'route-guard'
-  },
+  // router: {
+  //   middleware: 'route-guard'
+  // },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios',
     { src: '~/plugins/vee-validate', mode: 'client' },
     { src: '~/plugins/iziToast', mode: 'client' },
-    // '~/plugins/persistedState.client.js',
+    '~/plugins/persistedState.client.js',
     { src: "@/plugins/vClickOutside", ssr: false }
   ],
 
