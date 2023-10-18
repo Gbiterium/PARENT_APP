@@ -29,7 +29,7 @@ export default function ({ $axios, app, store, redirect }) {
 
 
     if (store.state.auth.token) {
-      config.headers.common.Authorization = `Bearer ${store.state.auth.token}`
+      config.headers.Authorization = `Bearer ${store.state.auth.token}`
     }
     return config
   })
