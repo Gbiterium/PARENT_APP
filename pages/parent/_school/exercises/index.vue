@@ -53,27 +53,15 @@ export default {
   },
     methods: {
         async getAssignments(status) {
-            const token = this.$cookies.get('auth-token');
-const url = `${process.env.BASE_URL}/util/v2/mobile/exercises/${this.$route.query.student_id}?page_size=12&status=${status}`;
-const request = new Request(url, {
-  method: 'GET',
-  headers: {
-    'Authorization': `Bearer ${token}`,
-    // Add other necessary headers here
-  }
-});
-
-fetch(request)
-  .then(response => response.json())
-  .then(data => {
-    this.exercises = data.data.results;
-  })
-  .catch(error => {
-    console.log(error);
-  })
-  .finally(() => {
-    this.loading = false;
-  });
+            try {
+                this.loading = true
+                const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}?page_size=12&status=${status}`)
+                this.exercises = data.data.results
+            } catch (error) {
+                console.log(error)
+            } finally {
+                this.loading = false
+            }
         },
         async notDone() {
             this.toggle = false
