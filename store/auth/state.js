@@ -1,5 +1,5 @@
 const state = () => ({
-    user: this.$cookies.set('user-details') || {},
+    user: this.$cookies.get('user-details') || {},
     token: this.$cookies.get('auth-token') || null,
     userSigningUp: ''
 })
