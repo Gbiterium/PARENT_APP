@@ -54,8 +54,13 @@ export default {
     methods: {
         async getAssignments(status) {
             try {
+                const token = this.$cookies.get('auth-token')
                 this.loading = true
-                const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}?page_size=12&status=${status}`)
+                const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}?page_size=12&status=${status}`, {
+                    headers: {
+              Authorization: `Bearer ${this.token}`,
+            },
+                })
                 this.exercises = data.data.results
             } catch (error) {
                 console.log(error)
