@@ -1,6 +1,6 @@
 const state = () => ({
-    user: {},
-    token: null,
+    user: this.$cookies.set('user-details') || {},
+    token: this.$cookies.get('auth-token') || null,
     userSigningUp: ''
 })
 
