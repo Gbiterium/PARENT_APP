@@ -62,7 +62,7 @@ export default {
         async getReportCard() {
             try {
                 this.loading = true
-                const { data } = await this.$axios.get(`/util/v2/mobile/reportcards/${this.$route.query.student_id}`)
+                const { data } = await this.$axios.get(`/util/v2/mobile/reportcards/${this.$route.query.student_id}/`)
                 this.reports = data.data.results
             } catch (error) {
                 console.log(error)

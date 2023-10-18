@@ -55,7 +55,7 @@ export default {
         async getAssignments(status) {
             try {
                 this.loading = true
-                const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}?page_size=12&status=${status}`)
+                const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}/?page_size=12&status=${status}`)
                 this.exercises = data.data.results
             } catch (error) {
                 console.log(error)
