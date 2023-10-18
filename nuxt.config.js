@@ -1,5 +1,6 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
   head: {
     title: 'parent-app',
     meta: [
@@ -36,7 +37,7 @@ export default {
     '~/plugins/axios',
     { src: '~/plugins/vee-validate', mode: 'client' },
     { src: '~/plugins/iziToast', mode: 'client' },
-    '~/plugins/persistedState.client.js',
+    // '~/plugins/persistedState.client.js',
     { src: "@/plugins/vClickOutside", ssr: false }
   ],
 
@@ -76,11 +77,17 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    meta: {
+      title: 'Parent App',
+      author: 'Slate',
+    },
     manifest: {
-      lang: 'en'
-    }
+      name: 'Slate Parent',
+      short_name: 'Parent App PWA',
+      lang: 'en',
+    },
   },
-
+  
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

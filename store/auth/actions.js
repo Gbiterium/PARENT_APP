@@ -9,6 +9,10 @@ const actions = {
                     path: '/',
                     maxAge: 60 * 60 * 24 * 7
                 })
+                this.$cookies.set('user-details', response.data.user_details, {
+                    path: '/',
+                    maxAge: 60 * 60 * 24 * 7
+                })
                 this.$router.push('/schools')
             }
         } catch (error) {
