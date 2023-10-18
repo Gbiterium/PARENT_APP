@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between text-light-blue">
                     <div class="d-flex align-items-center">
-                        <b-icon-bell-fill v-if="$route.name.includes('schools')" class="pointer" />
+                        <b-icon-bell-fill v-if="$route.name.includes('schools')" class="pointer fs-20" />
                         <b-icon-chevron-left v-else class="fs-20 pointer" @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" />
                     </div>
                     <div v-if="pageRoute.length > 2" class="fs-20 font-weight-600 text-capitalize">
