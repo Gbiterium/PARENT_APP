@@ -58,7 +58,7 @@ export default {
                 this.loading = true
                 const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}?page_size=12&status=${status}`, {
                     headers: {
-              Authorization: `Bearer ${this.token}`,
+              Authorization: `Bearer ${token}`,
             },
                 })
                 this.exercises = data.data.results
