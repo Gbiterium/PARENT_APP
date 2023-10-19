@@ -30,7 +30,7 @@
                                 </button></b-dropdown-item>
                         </b-dropdown> -->
                         <!-- <img src="@/assets/img/default_profile.png" /> -->
-                        <b-icon-gear-fill class="text-light-blue fs-20 mr-3" @click.prevent="$emit('show-dropdown')" />
+                        <b-icon-gear-fill class="text-light-blue fs-20 mr-2" @click.prevent="$emit('show-dropdown')" />
                     </div>
                 </div>
                 <div v-if="pageRoute.length === 3"
