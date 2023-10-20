@@ -56,10 +56,19 @@ export default {
                 return
             }
                 this.loading = true
+                const str = this.school_code.replace(/\s+/g, "");
+      const [schoolcode, linkcode] = str.split("-");
                 const response = await this.$axios.post('/util/v2/link/entity/?entity=family', {
-                    school_code: this.school_code
+                    school_code: schoolcode,
+            link_code: linkcode,
                 })
-                console.log(response, 'hello')
+                if (response.status === 200) {
+                    this.$toast({
+                        type: 'success',
+                        text: 'Linking was successful'
+                    })
+                    this.$router.push('/schools')
+                }
             } catch (error) {
                 console.log(error)
             } finally {
