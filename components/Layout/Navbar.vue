@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center justify-content-between text-light-blue">
                     <div class="d-flex align-items-center">
                         <b-icon-bell-fill v-if="$route.name.includes('schools')" class="pointer fs-20 ml-2" />
-                        <b-icon-chevron-left v-else class="fs-20 ml-2 pointer" @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" />
+                        <b-icon-chevron-left v-else class="fs-20 mx-2 pointer" @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" />
                     </div>
                     <div v-if="pageRoute.length > 2" class="fs-20 font-weight-600 text-capitalize">
                         {{ pageRoute[2].includes('-') ? pageRoute[2].replace(/-/g, ' ') : pageRoute[2] }}
@@ -30,7 +30,7 @@
                                 </button></b-dropdown-item>
                         </b-dropdown> -->
                         <!-- <img src="@/assets/img/default_profile.png" /> -->
-                        <b-icon-gear-fill class="text-light-blue fs-20 mr-2" @click.prevent="$emit('show-dropdown')" />
+                        <b-icon-gear-fill class="text-light-blue fs-20 mx-2" @click.prevent="$emit('show-dropdown')" />
                     </div>
                 </div>
                 <div v-if="pageRoute.length === 3"
@@ -96,17 +96,17 @@ export default {
                     const academic_year = newval["current_ academic_year"].year_id
                     await this.getStudents(academic_year)
                 }
-                    if (Object.keys(this.selectedStudent).length === 0 && this.pageRoute.length === 3) {
+                    if (Object.keys(this.selectedStudent).length === 0 || !oldval) {
           if (this.students.length > 0) {
             this.selectedStudent = this.students[0];
-            this.$router.push({
+            this.pageRoute.length === 3 ? this.$router.push({
               query: {
                 admission_id: this.selectedStudent.admission_id,
                 student_id: this.selectedStudent.class_student_id
               }
-            });
+            }) : ''
           }
-        } if (this.pageRoute.length === 3) {
+        }else if (this.pageRoute.length === 3) {
           this.$router.push({
             query: {
               admission_id: this.selectedStudent.admission_id,

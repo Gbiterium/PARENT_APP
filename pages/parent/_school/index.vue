@@ -50,5 +50,6 @@ justify-content: center;
 }
 .parent-menu {
     overflow: auto;
+    padding-bottom: 100px;
 }
 </style>
