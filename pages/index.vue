@@ -23,6 +23,7 @@
       <button class="btn btn-light font-weight-600 py-2 px-5 ml-4 max-width" @click.prevent="$router.push('/auth/login')">
         Login
       </button>
+      <button @click="installPWA" v-if="showInstallButton">Install PWA</button>
     </div>
     </div>
   </div>
@@ -44,7 +45,13 @@ export default {
         { title: 'Communicate with your child’s teacher', description: 'Convenient way to send messages, recieve daily communication logs.', image: require('@/assets/img/chat.svg'), bgColor: '#EBF0FE' },
       ],
       loading: true,
+      deferredPrompt: null,
     }
+  },
+  computed: {
+    showInstallButton() {
+      return this.deferredPrompt !== null;
+    },
   },
   mounted () {
     if(this.$store.state.auth.token) {
@@ -53,9 +60,24 @@ export default {
     setTimeout(() => {
       this.loading = false
     }, 500)
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      this.deferredPrompt = event;
+    });
+    // this.installPWA()
   },
   methods: {
-
+    installPWA() {
+      if (this.deferredPrompt) {
+        this.deferredPrompt.prompt();
+        this.deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the installation prompt');
+          }
+          this.deferredPrompt = null;
+        });
+      }
+    },
   }
 }
 </script>
