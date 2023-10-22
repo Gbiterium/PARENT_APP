@@ -1,7 +1,7 @@
 <template>
   <div class="homepage bg-blue d-flex align-items-center">
     <div v-if="!loading" class="container">
-    <VueSlickCarousel :arrows="false" :dots="true" :slides-to-show="1" :slides-to-scroll="1" :autoplay="true"
+    <VueSlickCarousel :arrows="false" :dots="showInstallButton ? false : true" :slides-to-show="1" :slides-to-scroll="1" :autoplay="true"
       :speed="1000" :autoplay-speed="4000">
       <div v-for="(el, index) in informations" :key="index">
         <div class="d-flex align-items-center justify-content-center img-wrapper">
@@ -16,14 +16,18 @@
         <p class="px-4 text-center text-light font-weight-400 fs-14 mt-1">{{ el.description }}</p>
       </div>
     </VueSlickCarousel>
-    <div class="d-flex align-items-center justify-content-center cta">
+    <div class="cta">
+      <div class="d-flex justify-content-center">
+    <button class="btn btn-light font-weight-600 py-2 px-5 mb-2" @click="installPWA" v-if="showInstallButton">Install App</button>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
       <button class="btn btn-dark font-weight-600 py-2 px-5 max-width" @click.prevent="$router.push('/auth/signup')">
         Sign Up
       </button>
       <button class="btn btn-light font-weight-600 py-2 px-5 ml-4 max-width" @click.prevent="$router.push('/auth/login')">
         Login
       </button>
-      <button @click="installPWA" v-if="showInstallButton">Install PWA</button>
+    </div>
     </div>
     </div>
   </div>
@@ -97,7 +101,7 @@ export default {
   position: absolute;
   bottom: 0px;
   left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -30%);
 }
 .max-width {
   white-space: nowrap;

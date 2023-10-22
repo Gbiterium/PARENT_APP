@@ -76,13 +76,9 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
-    meta: {
-      title: 'Parent App',
-      author: 'Slate',
-    },
     manifest: {
       name: 'Slate Parent',
-      short_name: 'Parent App PWA',
+      short_name: 'Parent App',
       lang: 'en',
     },
   },
