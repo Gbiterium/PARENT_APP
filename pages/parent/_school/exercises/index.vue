@@ -117,7 +117,7 @@ export default {
         async getAssignments(status, i = 1) {
             try {
                 this.loading = true
-                const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}/?page_size=${this.perPage}&page=${1}&status=${status}`)
+                const { data } = await this.$axios.get(`/util/v2/mobile/exercises/${this.$route.query.student_id}/?page_size=${this.perPage}&page=${i}&status=${status}`)
                 this.exercises = data.data.results
                 this.pages = data.data.total_pages
                 this.recordCount = data.data.count
