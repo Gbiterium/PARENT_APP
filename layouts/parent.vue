@@ -32,10 +32,10 @@ export default {
 
 <style scoped>
 .site-nav {
-    padding-bottom: 110px;
+    padding-bottom: 80px;
 }
 .page-wrapper {
-    background: #F5F9FA;
+    /* background: #F5F9FA; */
     min-height: 100vh;
 }
 </style>

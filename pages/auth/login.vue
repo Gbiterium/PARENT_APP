@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="py-4 pointer">
-            <b-icon-chevron-left class="fs-24" @click.prevent="$router.go(-1)" />
+            <b-icon-chevron-left class="fs-24" @click.prevent="$router.push('/')" />
         </div>
         <div class="mt-2 icon-container d-flex justify-content-center align-items-center">
             <img src="@/assets/img/login.svg" width="36" height="36">

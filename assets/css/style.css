@@ -89,6 +89,17 @@ html {
   .btn.btn-dark:not(:disabled):active {
     background: #171e40;
   }
+  .btn.btn-primary {
+    background: #1C7ADC;
+    border: 1px solid #1C7ADC;
+    color: #ffffff;
+  }
+  .btn.btn-primary:not(:disabled):hover,
+.btn.btn-primary:not(:disabled):focus,
+.btn.btn-primary:not(:disabled):active {
+  background: #1070b7;
+  border-color: #1070b7;
+}
 
   /* Slick Carousel */
   .slick-dots {
@@ -161,7 +172,7 @@ html {
     background: transparent;
   }
   .card {
-    border: 0.5px solid #D8EDF5;
+    border: 0.5px solid #1C7ADC;
     border-radius: 16px;
     background: #fff;
 }

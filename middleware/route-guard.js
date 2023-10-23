@@ -1,6 +1,6 @@
-export default function ({ route, $cookies, redirect, app }) {
+export default function ({ route, $cookies, store, redirect, app }) {
     if (route.path.includes('schools') || route.path.includes('parent')) {
-    if (!$cookies.get('auth-token')) {
+    if (!store.getters['auth/isLoggedIn']) {
       if (process.client) {
         app.$toast({
           type: 'error',

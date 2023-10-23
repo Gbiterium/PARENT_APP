@@ -1,26 +1,31 @@
 <template>
     <div>
-        <div :class="pageRoute.length > 2 ? 'top-nav2 py-4' : 'top-nav py-4'">
+        <div :class="pageRoute.length > 2 ? 'top-nav2 py-4' : 'top-nav py-3'">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between text-light-blue">
                     <div class="d-flex align-items-center">
-                        <b-icon-bell-fill v-if="$route.name.includes('schools')" class="pointer fs-20 ml-2" />
-                        <b-icon-chevron-left v-else class="fs-20 mx-2 pointer" @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" />
+                        <b-icon-list v-if="$route.name.includes('schools')" class="pointer fs-24 ml-2"
+                            @click.prevent="$emit('show-dropdown')" />
+                        <b-icon-chevron-left v-else class="fs-20 mx-2 pointer"
+                            @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" />
                     </div>
                     <div v-if="pageRoute.length > 2" class="fs-20 font-weight-600 text-capitalize">
                         {{ pageRoute[2].includes('-') ? pageRoute[2].replace(/-/g, ' ') : pageRoute[2] }}
                     </div>
                     <div v-else class="">
-                        <div v-if="$route.fullPath.includes('schools')" class="fs-12 font-weight-light">Welcome back</div>
-                        <div v-if="getUser && $route.fullPath.includes('schools')" class="fs-20 font-weight-600">
-                            {{ getUser.first_name }} {{ getUser.last_name }}
+                        <!-- <div v-if="$route.fullPath.includes('schools')" class="fs-12 font-weight-light">Welcome back</div> -->
+                        <div v-if="$route.fullPath.includes('schools')"
+                            class="fs-18 font-weight-600">
+                            Schools
                         </div>
-                        <div v-if="$route.fullPath.includes('parent') && school" class="fs-18 font-weight-medium">{{
+                        <div v-if="$route.params.student"
+                            class="fs-18 font-weight-600">{{ $route.query.name }}</div>
+                        <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-18 font-weight-600">{{
                             school.name }}</div>
                     </div>
                     <div class="pointer d-flex align-items-center">
-                        <img v-if="pageRoute.length > 2" class="pointer mr-2"
-                            src="@/assets/img/house.svg" @click.prevent="$router.push(`/parent/${school.code}`)" />
+                        <img v-if="pageRoute.length > 2" class="pointer mr-2" src="@/assets/img/house.svg"
+                            @click.prevent="$router.push(`/parent/${school.code}`)" />
                         <!-- <b-dropdown variant="link" toggle-class="custom-toggle text-decoration-none" no-caret>
                             <template #button-content>
                                 <b-icon-gear-fill class="text-light-blue" />
@@ -30,11 +35,10 @@
                                 </button></b-dropdown-item>
                         </b-dropdown> -->
                         <!-- <img src="@/assets/img/default_profile.png" /> -->
-                        <b-icon-gear-fill class="text-light-blue fs-20 mx-2" @click.prevent="$emit('show-dropdown')" />
+                        <b-icon-bell-fill class="text-light-blue mx-2" />
                     </div>
                 </div>
-                <div v-if="pageRoute.length === 3"
-                    class="students mt-3 d-flex align-items-center pointer">
+                <div v-if="pageRoute.length === 3" class="students mt-3 d-flex align-items-center pointer">
                     <div v-if="loading" class="d-flex">
                         <b-skeleton class="mr-3" width="150px" height="58px"></b-skeleton>
                         <b-skeleton class="mr-2" width="150px" height="58px"></b-skeleton>
@@ -96,24 +100,24 @@ export default {
                     const academic_year = newval["current_ academic_year"].year_id
                     await this.getStudents(academic_year)
                 }
-                    if (Object.keys(this.selectedStudent).length === 0 || !oldval) {
-          if (this.students.length > 0) {
-            this.selectedStudent = this.students[0];
-            this.pageRoute.length === 3 ? this.$router.push({
-              query: {
-                admission_id: this.selectedStudent.admission_id,
-                student_id: this.selectedStudent.class_student_id
-              }
-            }) : ''
-          }
-        }else if (this.pageRoute.length === 3) {
-          this.$router.push({
-            query: {
-              admission_id: this.selectedStudent.admission_id,
-              student_id: this.selectedStudent.class_student_id
-            }
-          });
-        }
+                if (Object.keys(this.selectedStudent).length === 0 || !oldval) {
+                    if (this.students.length > 0) {
+                        this.selectedStudent = this.students[0];
+                        this.pageRoute.length === 3 ? this.$router.push({
+                            query: {
+                                admission_id: this.selectedStudent.admission_id,
+                                student_id: this.selectedStudent.class_student_id
+                            }
+                        }) : ''
+                    }
+                } else if (this.pageRoute.length === 3) {
+                    this.$router.push({
+                        query: {
+                            admission_id: this.selectedStudent.admission_id,
+                            student_id: this.selectedStudent.class_student_id
+                        }
+                    });
+                }
             },
             immediate: true,
         },
@@ -122,10 +126,12 @@ export default {
         handleClick(item, index) {
             this.selectedIndex = index;
             this.selectedStudent = item;
-            this.$router.replace({query: {
-                admission_id: item.admission_id,
-                student_id: item.class_student_id
-            }})
+            this.$router.replace({
+                query: {
+                    admission_id: item.admission_id,
+                    student_id: item.class_student_id
+                }
+            })
         },
         async getStudents(id) {
             try {
@@ -202,9 +208,9 @@ export default {
 .students {
     overflow: auto;
 }
+
 .custom-toggle {
     position: absolute;
     bottom: 0;
     width: 100%;
-}
-</style>
+}</style>
