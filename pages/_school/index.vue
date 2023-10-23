@@ -7,7 +7,7 @@
         </div>
         <div v-else class="row">
             <div v-for="el in students" :key="el.id" class="col-md-4 fs-14 mb-3 schools-container">
-                <div class="card shadow-sm pointer p-3">
+                <div class="card shadow-sm pointer p-3" @click.prevent="handleClick(el)">
                     <div class="d-flex align-items-center">
                         <div class="img-container">
                             <img :src="el.image
