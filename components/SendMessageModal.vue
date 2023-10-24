@@ -1,7 +1,10 @@
 <template>
     <div>
         <ModalWrapper id="send-message" title="Send Message" submit-title="Send Message" @ok="handleSubmit">
-            <div>Hello</div>
+            <form>
+                <label>Message</label>
+                <textarea class="form-control"></textarea>
+            </form>
         </ModalWrapper>
     </div>
 </template>

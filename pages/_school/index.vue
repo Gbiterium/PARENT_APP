@@ -18,8 +18,8 @@
                         <div class="d-flex flex-grow-1 justify-content-between ml-2">
                             <div>
                             <div class="fs-18 font-weight-bold">{{ el.name }}</div>
-                            <div class="fs-14 font-weight-medium">{{ el.class_name }}</div>
-                            <div class="fs-14 font-weight-medium">{{ el.form_teacher }}</div>
+                            <div class="fs-14 font-weight-600">{{ el.class_name }}</div>
+                            <div class="fs-14 font-weight-600">{{ el.form_teacher }}</div>
                             </div>
                             <div @click.prevent="handleClick(el)">
                                 <img src="@/assets/img/chat2.svg" />

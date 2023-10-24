@@ -10,18 +10,18 @@
                             <!-- <b-icon-chevron-left v-else class="fs-24 pointer"
                             @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" /> -->
                     </div>
-                    <div v-if="pageRoute.length > 2" class="fs-20 font-weight-600 text-capitalize">
+                    <div v-if="pageRoute.length > 2" class="fs-22 font-weight-900 text-capitalize">
                         {{ pageRoute[2].includes('-') ? pageRoute[2].replace(/-/g, ' ') : pageRoute[2] }}
                     </div>
                     <div v-else class="">
                         <!-- <div v-if="$route.fullPath.includes('schools')" class="fs-12 font-weight-light">Welcome back</div> -->
                         <div v-if="$route.fullPath.includes('schools')"
-                            class="fs-20 font-weight-bolder">
+                            class="fs-22 font-weight-900">
                             Schools
                         </div>
                         <div v-if="$route.params.student"
-                            class="fs-20 font-weight-bolder">{{ $route.query.name }}</div>
-                        <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-20 font-weight-bolder">{{
+                            class="fs-22 font-weight-900">{{ $route.query.name }}</div>
+                        <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-22 font-weight-900">{{
                             school.name }}</div>
                     </div>
                     <div class="pointer d-flex align-items-center">
