@@ -6,19 +6,19 @@
                     <div class="d-flex justify-content-center">
                         <b-icon-chat class="fs-20 text-light-blue" />
                     </div>
-                    <div class="fs-14 mt-1 font-weight-medium">Message</div>
+                    <div class="fs-14 mt-1 font-weight-600">Message</div>
                 </div>
                 <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
                         <b-icon-file-text class="fs-20 text-info" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-medium">Reports</span>
+                    <span class="fs-14 mt-1 font-weight-600">Reports</span>
                 </div>
                 <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
                         <b-icon-lightbulb class="fs-20 text-warning" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-medium">Learning</span>
+                    <span class="fs-14 mt-1 font-weight-600">Learning</span>
                 </div>
             </div>
             <hr />
