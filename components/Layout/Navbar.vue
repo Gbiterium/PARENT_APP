@@ -6,8 +6,9 @@
                     <div class="d-flex align-items-center">
                         <b-icon-list v-if="$route.name.includes('schools')" class="pointer fs-24 ml-2"
                             @click.prevent="$emit('show-dropdown')" />
-                        <b-icon-chevron-left v-else class="fs-20 mx-2 pointer"
-                            @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" />
+                            <img v-else class="pointer" src="@/assets/img/left-arrow.svg" @click.prevent="$router.go(-1)" />
+                            <!-- <b-icon-chevron-left v-else class="fs-24 pointer"
+                            @click.prevent="pageRoute.length === 3 ? $router.push(`/parent/${school.code}`) : $router.go(-1)" /> -->
                     </div>
                     <div v-if="pageRoute.length > 2" class="fs-20 font-weight-600 text-capitalize">
                         {{ pageRoute[2].includes('-') ? pageRoute[2].replace(/-/g, ' ') : pageRoute[2] }}
@@ -15,12 +16,12 @@
                     <div v-else class="">
                         <!-- <div v-if="$route.fullPath.includes('schools')" class="fs-12 font-weight-light">Welcome back</div> -->
                         <div v-if="$route.fullPath.includes('schools')"
-                            class="fs-18 font-weight-600">
+                            class="fs-20 font-weight-bolder">
                             Schools
                         </div>
                         <div v-if="$route.params.student"
-                            class="fs-18 font-weight-600">{{ $route.query.name }}</div>
-                        <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-18 font-weight-600">{{
+                            class="fs-20 font-weight-bolder">{{ $route.query.name }}</div>
+                        <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-20 font-weight-bolder">{{
                             school.name }}</div>
                     </div>
                     <div class="pointer d-flex align-items-center">
@@ -35,7 +36,7 @@
                                 </button></b-dropdown-item>
                         </b-dropdown> -->
                         <!-- <img src="@/assets/img/default_profile.png" /> -->
-                        <b-icon-bell-fill class="text-light-blue mx-2" />
+                        <b-icon-bell-fill v-if="$route.name === 'schools'" class="text-light-blue" />
                     </div>
                 </div>
                 <div v-if="pageRoute.length === 3" class="students mt-3 d-flex align-items-center pointer">

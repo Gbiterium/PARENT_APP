@@ -24,7 +24,7 @@
     data() {
       return {
         tabs: [
-          { name: 'Students', icon: 'people-fill', route: `/schools`,  active: true },
+          { name: 'Students', icon: 'people-fill', active: true },
           { name: 'Calendar', icon: 'calendar2-date-fill', active: false },
           { name: 'Newsletter', icon: 'envelope-fill', active: false },
           { name: 'Finance', icon: 'bank2', active: false },

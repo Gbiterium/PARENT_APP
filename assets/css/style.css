@@ -9,7 +9,7 @@ html {
   overflow-x: hidden;
 }
 .bg-blue {
-    background: #1C7ADC;
+    background: #1C7ADC !important;
 }
 .slate-dark {
   color: #171E40;
@@ -38,11 +38,17 @@ html {
 .fs-24 {
   font-size: 24px !important;
 }
+.fs-22 {
+  font-size: 22px !important;
+}
 .fs-20 {
     font-size: 20px !important;
 }
 .fs-18 {
     font-size: 18px !important;
+}
+.fs-16 {
+  font-size: 16px !important;
 }
 .fs-14 {
     font-size: 14px !important;
@@ -172,7 +178,7 @@ html {
     background: transparent;
   }
   .card {
-    border: 0.5px solid #1C7ADC;
+    border: 1px solid #1C7ADC;
     border-radius: 16px;
     background: #fff;
 }

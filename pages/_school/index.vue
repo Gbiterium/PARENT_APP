@@ -17,18 +17,18 @@
                         </div>
                         <div class="d-flex flex-grow-1 justify-content-between ml-2">
                             <div>
-                            <div class="font-weight-600">{{ el.name }}</div>
-                            <div class="fs-12">{{ el.class_name }}</div>
-                            <div class="fs-12">{{ el.form_teacher }}</div>
+                            <div class="fs-18 font-weight-bold">{{ el.name }}</div>
+                            <div class="fs-14 font-weight-medium">{{ el.class_name }}</div>
+                            <div class="fs-14 font-weight-medium">{{ el.form_teacher }}</div>
                             </div>
                             <div @click.prevent="handleClick(el)">
-                                <b-icon-chat-fill class="fs-18 text-light-blue" />
+                                <img src="@/assets/img/chat2.svg" />
                             </div>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mt-3">
-                        <button class="btn btn-warning px-4 py-2 mr-3 w-50">Reports</button>
-                        <button class="btn btn-primary px-4 py-2 w-50">Learning</button>
+                        <button class="btn btn-warning px-4 py-2 mr-3 w-50 fs-16 font-weight-600">Reports</button>
+                        <button class="btn btn-primary px-4 py-2 w-50 fs-16 font-weight-600">Learning</button>
                     </div>
                 </div>
             </div>

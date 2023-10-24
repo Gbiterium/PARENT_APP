@@ -1,40 +1,56 @@
 <template>
     <div>
-        <div class="d-flex align-items-center justify-content-between mx-5">
-            <div class="d-flex justify-content-center flex-column">
-                <div class="d-flex justify-content-center">
-                    <b-icon-chat class="fs-20 text-light-blue" />
+        <div class="topbar py-3">
+            <div class="d-flex align-items-center justify-content-between mx-5">
+                <div class="d-flex justify-content-center flex-column">
+                    <div class="d-flex justify-content-center">
+                        <b-icon-chat class="fs-20 text-light-blue" />
+                    </div>
+                    <div class="fs-14 mt-1 font-weight-medium">Message</div>
                 </div>
-                <div class="fs-14 mt-1">Message</div>
+                <div class="d-flex justify-content-center flex-column">
+                    <div class="d-flex justify-content-center">
+                        <b-icon-file-text class="fs-20 text-info" />
+                    </div>
+                    <span class="fs-14 mt-1 font-weight-medium">Reports</span>
+                </div>
+                <div class="d-flex justify-content-center flex-column">
+                    <div class="d-flex justify-content-center">
+                        <b-icon-lightbulb class="fs-20 text-warning" />
+                    </div>
+                    <span class="fs-14 mt-1 font-weight-medium">Learning</span>
+                </div>
             </div>
-            <div class="d-flex justify-content-center flex-column">
-                <div class="d-flex justify-content-center">
-                    <b-icon-file-text class="fs-20 text-info" />
-                </div>
-                <span class="fs-14 mt-1">Reports</span>
-            </div>
-            <div class="d-flex justify-content-center flex-column">
-                <div class="d-flex justify-content-center">
-                    <b-icon-lightbulb class="fs-20 text-warning" />
-                </div>
-                <span class="fs-14 mt-1">Learning</span>
+            <hr />
+            <div class="col-12">
+                <select class="w-100 p-1 fs-14">
+                    <option value="All Activity" selected>All Activities</option>
+                    <option value="Food">Food</option>
+                </select>
             </div>
         </div>
-        <hr />
-        <div class="col-12">
-            <select class="w-100 p-1 fs-14">
-                <option value="All Activity" selected>All Activity</option>
-                <option value="Food">Food</option>
-            </select>
-        </div>
-        <div class="my-3">
+        <div class="my-3 page-content">
             <div v-for="(group, date) in groupedData" :key="date" class="mt-2 mb-3">
-            <div class="px-4 py-2 date fs-14 text-light-blue">{{ formatDate(date) }}</div>
-            <div v-for="item in group" :key="item.id">
-            <div class="fs-14 px-4">{{ item.post }}</div>
+                <div class="px-3 py-1 date fs-14 text-light-blue">{{ date }}</div>
+                <div v-for="item in group" :key="item.id">
+                    <div class="d-flex align-items-center my-3">
+                        <div class="mx-3 icon-container bg-info d-flex justify-content-center align-items-center">
+                            <b-icon-pencil-square class="fs-20 text-white" />
+                        </div>
+                        <div>
+                            <div v-if="item.post !== ''" class="font-weight-600">{{ item.post }}</div>
+                            <div class="fs-12 text-grey">{{ formatDate(item.datetime) }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="btn-absolute" @click.prevent="$bvModal.show('send-message')">
+                <div class="icon-container bg-blue d-flex align-items-center justify-content-center">
+                    <b-icon-plus-lg class="text-white fs-18" />
+                </div>
             </div>
         </div>
+        <SendMessageModal />
     </div>
 </template>
 
@@ -44,41 +60,60 @@ export default {
     layout: 'parent',
     async asyncData({ $axios, route }) {
         try {
-        const response = await $axios.get(
-          `communications/v3/class/student/${route.params.student}/parent/chats/`
-        )
-        const messages = response.data.data.results.reverse();
-        const groupedData = {}
-        messages.forEach(item => {
-    const date = item.datetime;
-    if (!groupedData[date]) {
-        groupedData[date] = [];
-    }
-    groupedData[date].push(item);
-});
-console.log(groupedData)
-        return {
-            groupedData
+            const response = await $axios.get(`communications/v3/class/student/${route.params.student}/parent/chats/`);
+            const messages = response.data.data.results;
+            const groupedData = {};
+            messages.forEach(item => {
+                const dateTime = DateTime.fromSQL(item.datetime);
+                const date = dateTime.toFormat('dd LLL yyyy');
+                if (!groupedData[date]) {
+                    groupedData[date] = [];
+                }
+                groupedData[date].push(item);
+            });
+            console.log(groupedData);
+            return {
+                groupedData
+            };
         }
-      } catch (error) {
-        console.log(error)
-      }
-    },
-    mounted() {
-console.log(this.groupedData);
+        catch (error) {
+            console.log(error);
+        }
     },
     methods: {
         formatDate(date) {
             const dateTime = DateTime.fromSQL(date);
- return dateTime.toFormat('dd LLL yyyy');
-
+            return dateTime.toFormat('dd LLL yyyy') + ', ' + dateTime.toFormat('h:mm a');
         }
-    }
+    },
 }
 </script>
 
 <style scoped>
 .date {
     background: #e7e8eb;
+}
+
+.icon-container {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.topbar {
+    position: fixed;
+    background-color: #fff;
+    width: 100%;
+    top: 60px;
+}
+
+.page-content {
+    padding-top: 110px;
+    padding-bottom: 20px;
+}
+.btn-absolute {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 </style>
