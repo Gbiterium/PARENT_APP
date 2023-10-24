@@ -7,6 +7,7 @@
         </div>
         <div v-else class="row">
             <div v-for="el in students" :key="el.id" class="col-md-4 fs-14 mb-3 schools-container">
+                <div class="big-card">
                 <div class="card shadow-sm pointer p-3" @click.prevent="handleClick(el)">
                     <div class="d-flex align-items-center">
                         <div class="img-container">
@@ -31,6 +32,7 @@
                         <button class="btn btn-primary px-4 py-2 w-50 fs-16 font-weight-600">Learning</button>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,6 +41,7 @@
 <script>
 export default {
     layout: 'parent',
+    // middleware: 'route-guard',
     data() {
         return {
             students: [],
@@ -81,7 +84,9 @@ export default {
             this.$router.push({
                 path: `/${this.$route.params.school}/${item.class_student_id}`,
                 query: {
-                    name: item.name
+                    name: item.name,
+                    class: item.class_name,
+                    form_teacher: item.form_teacher
                 }
             })
         }
@@ -100,5 +105,10 @@ button {
 }
 .student-lists {
     margin-bottom: 100px;
+}
+.big-card {
+    border-radius: 16px;
+    background: #F4F6F8;
+    height: 168px;
 }
 </style>

@@ -7,11 +7,13 @@
         </div>
         <div v-else class="row">
         <div v-for="school in getSchools" :key="school.id" class="col-md-4 font-weight-bold mb-3 schools-container">
+            <div class="big-card">
             <div class="card pointer shadow-sm p-3" @click.prevent="$router.push(`/${school.code}`)">
                 <div class="d-flex align-items-center">
                     <img :src="school.image" />
                     <div class="ml-3">{{ school.name }}</div>
                 </div>
+            </div>
             </div>
         </div>
         </div>
@@ -61,5 +63,10 @@ export default {
     border-radius: 50%;
     width: 40px;
     height: 40px;
+}
+.big-card {
+    border-radius: 16px;
+    background: #F4F6F8;
+    height: 87px;
 }
 </style>

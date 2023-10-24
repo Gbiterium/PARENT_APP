@@ -38,6 +38,35 @@
                             <b-icon-pencil-square class="fs-20 text-white" />
                         </div>
                         <div>
+                            <div v-if="item.file">
+                  <div v-if="item.file[0]" class="bg-white font-weight-600">
+                    <!-- <div v-if="imageViewExpanded"></div> -->
+                    <!-- <pre>{{ item.file }}</pre> -->
+
+                    <div class="">
+                      <div v-if="item.file[0].format == '.png' ||
+                        item.file[0].format == '.jpg' ||
+                        item.file[0].format == '.jpeg'
+                        " class="p-1" style="width: 200px">
+                        <img :src="item.file[0].url" style="width: 200px; height: 100px" class="img-fluid" alt="" />
+                      </div>
+                      <div v-if="item.file[0].format == '.pdf' ||
+                        item.file[0].format == '.docx' ||
+                        item.file[0].format == '.ppt'
+                        " class="bg-white rounded w-100 p-1">
+                        <a :href="item.file[0].url" target="_blank">
+                          <b-icon-file-earmark class="text-dark" />
+                          <span class="text-dark"> {{ item.file[0].file_name }}</span>
+                        </a>
+                      </div>
+                      <div v-if="item.file[0].format == '.mp4' ||
+                        item.file[0].format == '.webmb'
+                        " class="lightbluebg w-100 p-1">
+                        <video :src="item.file[0].url" style="width: 200px" class="img-fluid"></video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                             <div v-if="item.post !== ''" class="font-weight-600">{{ item.post }}</div>
                             <div class="fs-12 text-grey">{{ formatDate(item.datetime) }}</div>
                         </div>
@@ -50,13 +79,14 @@
                 </div>
             </div>
         </div>
-        <SendMessageModal />
+        <SendMessageModal @refresh="refresh" />
     </div>
 </template>
 
 <script>
 import { DateTime } from "luxon";
 export default {
+    // middleware: 'route-guard',
     layout: 'parent',
     async asyncData({ $axios, route }) {
         try {
@@ -71,7 +101,7 @@ export default {
                 }
                 groupedData[date].push(item);
             });
-            console.log(groupedData);
+            // console.log(groupedData);
             return {
                 groupedData
             };
@@ -84,6 +114,10 @@ export default {
         formatDate(date) {
             const dateTime = DateTime.fromSQL(date);
             return dateTime.toFormat('dd LLL yyyy') + ', ' + dateTime.toFormat('h:mm a');
+        },
+        refresh() {
+            this.$nuxt.refresh()
+            window.scrollTo(0, 0)
         }
     },
 }
@@ -104,11 +138,11 @@ export default {
     position: fixed;
     background-color: #fff;
     width: 100%;
-    top: 60px;
+    top: 75px;
 }
 
 .page-content {
-    padding-top: 110px;
+    padding-top: 120px;
     padding-bottom: 20px;
 }
 .btn-absolute {

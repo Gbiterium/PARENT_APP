@@ -19,8 +19,11 @@
                             class="fs-22 font-weight-900">
                             Schools
                         </div>
-                        <div v-if="$route.params.student"
-                            class="fs-22 font-weight-900">{{ $route.query.name }}</div>
+                        <div v-if="$route.params.student">
+                           <div class="fs-22 font-weight-900">{{ $route.query.name }}</div>
+                           <div class="text-center">{{ $route.query.class }}</div>
+                           <!-- <div class="">{{ $route.query.form_teacher }}</div> -->
+                        </div>
                         <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-22 font-weight-900">{{
                             school.name }}</div>
                     </div>
