@@ -6,7 +6,7 @@
             <b-skeleton class="mb-3" width="100%" height="78px"></b-skeleton>
         </div>
         <div v-else class="row">
-        <div v-for="school in getSchools" :key="school.id" class="col-md-4 font-weight-600 mb-3 schools-container">
+        <div v-for="school in getSchools" :key="school.id" class="col-md-4 font-weight-bold mb-3 schools-container">
             <div class="card pointer shadow-sm p-3" @click.prevent="$router.push(`/${school.code}`)">
                 <div class="d-flex align-items-center">
                     <img :src="school.image" />
