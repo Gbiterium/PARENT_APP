@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="dropup text-blue"  v-click-outside="closeDropdown">
+        <div class="dropup text-light-blue"  v-click-outside="closeDropdown">
             <div class="p-3 border-bottom">Hi, {{ getUser.first_name }} {{ getUser.last_name }}</div>
                             <div class="p-3 border-bottom pointer"><b-icon-person-circle class="mr-2" />My Profile</div>
                             <div class="p-3 border-bottom pointer"><b-icon-bell-fill class="mr-2" />Notifications</div>

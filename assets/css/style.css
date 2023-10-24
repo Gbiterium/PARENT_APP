@@ -111,9 +111,9 @@ html {
 }
 
   /* Slick Carousel */
-  .slick-dots {
+  /* .slick-dots {
     bottom: -3em !important;
-  }
+  } */
   .slick-dots li.slick-active button::before {
     color: #fff !important;
   }
