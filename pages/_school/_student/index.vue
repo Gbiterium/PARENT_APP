@@ -4,38 +4,41 @@
             <div class="d-flex align-items-center justify-content-between mx-5">
                 <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
-                        <b-icon-chat class="fs-20 text-light-blue" />
+                        <b-icon-chat class="fs-30 text-light-blue" />
                     </div>
                     <div class="fs-14 mt-1 font-weight-600">Message</div>
                 </div>
                 <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
-                        <b-icon-file-text class="fs-20 text-info" />
+                        <b-icon-file-text class="fs-30 text-info" />
                     </div>
                     <span class="fs-14 mt-1 font-weight-600">Reports</span>
                 </div>
                 <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
-                        <b-icon-lightbulb class="fs-20 text-warning" />
+                        <b-icon-lightbulb class="fs-30 text-warning" />
                     </div>
                     <span class="fs-14 mt-1 font-weight-600">Learning</span>
                 </div>
             </div>
             <hr />
             <div class="col-12">
-                <select class="w-100 p-1 fs-14">
-                    <option value="All Activity" selected>All Activities</option>
-                    <option value="Food">Food</option>
-                </select>
+                <v-select
+                    v-model="filter"
+                    class="select"
+                    :options="filters"
+                    :clearable="false"
+                  >
+                  </v-select>
             </div>
         </div>
-        <div class="my-3 page-content">
+        <div class="mt-4 page-content">
             <div v-for="(group, date) in groupedData" :key="date" class="mt-2 mb-3">
                 <div class="px-3 py-1 date fs-14 text-light-blue">{{ date }}</div>
                 <div v-for="item in group" :key="item.id">
-                    <div class="d-flex align-items-center my-3">
+                    <div class="d-flex align-items-center mt-3 mb-5">
                         <div class="mx-3 icon-container bg-info d-flex justify-content-center align-items-center">
-                            <b-icon-pencil-square class="fs-20 text-white" />
+                            <img src="@/assets/img/pencil.svg" />
                         </div>
                         <div>
                             <div v-if="item.file">
@@ -74,7 +77,7 @@
                 </div>
             </div>
             <div class="btn-absolute" @click.prevent="$bvModal.show('send-message')">
-                <!-- <span v-if="item.file && item.file[0].type.includes('image')" class="video d-flex align-items-center justify-content-center"><b-icon-camera-video-fill class="fs-18 text-white" /></span> -->
+                <!-- <span v-if="item.file.length > 0 && item.file[0].type.includes('image')" class="video d-flex align-items-center justify-content-center"><b-icon-camera-video-fill class="fs-18 text-white" /></span> -->
                 <div class="icon-container bg-blue d-flex align-items-center justify-content-center">
                     <b-icon-plus-lg class="text-white fs-18" />
                 </div>
@@ -89,6 +92,12 @@ import { DateTime } from "luxon";
 export default {
     // middleware: 'route-guard',
     layout: 'parent',
+    data () {
+        return {
+            filter: 'All Activities',
+            filters: ['All Activities', 'Food']
+        }
+    },
     async asyncData({ $axios, route }) {
         try {
             const response = await $axios.get(`communications/v3/class/student/${route.params.student}/parent/chats/`);

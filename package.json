@@ -30,6 +30,7 @@
     "vue-cookies": "^1.8.3",
     "vue-emoji-picker": "^1.0.3",
     "vue-server-renderer": "^2.7.10",
+    "vue-select": "^3.16.0",
     "vue-slick-carousel": "^1.0.6",
     "vue-template-compiler": "^2.7.10",
     "vuex-persistedstate": "^4.1.0"

@@ -32,6 +32,9 @@ html {
 .pointer {
   cursor: pointer;
 }
+.fs-32 {
+  font-size: 32px !important;
+}
 .fs-30 {
   font-size: 30px !important;
 }

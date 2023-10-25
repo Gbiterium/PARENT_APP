@@ -59,7 +59,7 @@ export default {
     /* border-radius: 50%; */
 }
 .icon-wrapper {
-    border: 1.5px solid #1C7ADC;
+    border: 2px solid #1C7ADC;
     border-radius: 50%;
     width: 50px;
     height: 50px;

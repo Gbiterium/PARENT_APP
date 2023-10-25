@@ -37,6 +37,7 @@ export default {
     { src: '~/plugins/vee-validate', mode: 'client' },
     { src: '~/plugins/iziToast', mode: 'client' },
     '~/plugins/persistedState.client.js',
+    '~/plugins/vue-select.js',
     { src: "@/plugins/vClickOutside", ssr: false }
   ],
 
