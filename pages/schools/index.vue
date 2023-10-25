@@ -20,7 +20,7 @@
         <div v-if="!loading" class="d-flex align-items-center text-light-blue pointer" @click.prevent="$router.push('/schools/add')">
             <div class="icon-wrapper d-flex justify-content-center align-items-center">
                 <div class="d-flex justify-content-center align-items-center">
-            <b-icon-plus-lg class="fs-16 font-weight-bold" />
+            <img src="@/assets/img/plus.svg" />
             </div>
             </div>
             <div class="ml-2 font-weight-bold fs-20">Add child(ren)</div>
@@ -61,8 +61,8 @@ export default {
 .icon-wrapper {
     border: 1.5px solid #1C7ADC;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
 }
 .big-card {
     border-radius: 16px;
