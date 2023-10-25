@@ -11,7 +11,7 @@
             <div class="card pointer shadow-sm p-3" @click.prevent="$router.push(`/${school.code}`)">
                 <div class="d-flex align-items-center">
                     <img :src="school.image" />
-                    <div class="ml-3">{{ school.name }}</div>
+                    <div class="ml-3 fs-20">{{ school.name }}</div>
                 </div>
             </div>
             </div>
@@ -23,7 +23,7 @@
             <b-icon-plus-lg class="fs-16 font-weight-bold" />
             </div>
             </div>
-            <div class="ml-2 font-weight-600">Add child(ren) Sch</div>
+            <div class="ml-2 font-weight-bold fs-20">Add child(ren)</div>
         </div>
     </div>
 </template>
@@ -56,13 +56,13 @@ export default {
 .schools-container img {
     width: 45px;
     height: 45px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 .icon-wrapper {
     border: 1.5px solid #1C7ADC;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
 }
 .big-card {
     border-radius: 16px;

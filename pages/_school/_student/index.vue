@@ -74,7 +74,8 @@
                 </div>
             </div>
             <div class="btn-absolute" @click.prevent="$bvModal.show('send-message')">
-                <div class="icon-container bg-blue d-flex align-items-center justify-content-center">
+                <span v-if="item.file && item.file[0].type.includes('image')" class="video d-flex align-items-center justify-content-center"><b-icon-camera-video-fill class="fs-18 text-white" /></span>
+                <div v-else class="icon-container bg-blue d-flex align-items-center justify-content-center">
                     <b-icon-plus-lg class="text-white fs-18" />
                 </div>
             </div>
@@ -131,6 +132,12 @@ export default {
 .icon-container {
     width: 42px;
     height: 42px;
+    border-radius: 50%;
+}
+.video {
+    width: 42px;
+    height: 42px;
+    background: #dc3545;
     border-radius: 50%;
 }
 
