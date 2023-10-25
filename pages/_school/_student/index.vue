@@ -74,8 +74,8 @@
                 </div>
             </div>
             <div class="btn-absolute" @click.prevent="$bvModal.show('send-message')">
-                <span v-if="item.file && item.file[0].type.includes('image')" class="video d-flex align-items-center justify-content-center"><b-icon-camera-video-fill class="fs-18 text-white" /></span>
-                <div v-else class="icon-container bg-blue d-flex align-items-center justify-content-center">
+                <!-- <span v-if="item.file && item.file[0].type.includes('image')" class="video d-flex align-items-center justify-content-center"><b-icon-camera-video-fill class="fs-18 text-white" /></span> -->
+                <div class="icon-container bg-blue d-flex align-items-center justify-content-center">
                     <b-icon-plus-lg class="text-white fs-18" />
                 </div>
             </div>
