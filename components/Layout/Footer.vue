@@ -2,7 +2,7 @@
     <div class="footer">
       <div class="container">
         <div class="d-flex align-items-center py-3">
-          <div v-for="(el, index) in tabs" :key="index" class="ml-3">
+          <div v-for="(el, index) in $route.name === 'schools' ? schoolTabs : tabs" :key="index" class="ml-3">
             <div
               class="d-flex align-items-center pointer"
               :class="el.active ? 'active' : 'tab-inactive'"
@@ -28,18 +28,22 @@
           { name: 'Calendar', icon: 'calendar2-date-fill', active: false },
           { name: 'Newsletter', icon: 'envelope-fill', active: false },
           { name: 'Finance', icon: 'bank2', active: false },
-        ]
+        ],
+        schoolTabs: [
+        { name: 'Schools', icon: 'house-door-fill',  active: true },
+        { name: 'Discovery', icon: 'briefcase-fill', active: false }
+      ]
       };
     },
     methods: {
       handleSwitch(selectedTab) {
-        for (const tab of this.tabs) {
-          tab.active = tab === selectedTab;
-        }
-        if (selectedTab.route) {
-        this.$router.push(selectedTab.route)
-        }
-      }
+    for (const tab of this.$route.name === 'schools' ? this.schoolTabs : this.tabs) {
+      tab.active = tab.name === selectedTab.name;
+    }
+    if (selectedTab.route) {
+      this.$router.push(selectedTab.route);
+    }
+  }
     }
   };
   </script>

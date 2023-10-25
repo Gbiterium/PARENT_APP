@@ -23,7 +23,7 @@
             <img src="@/assets/img/plus.svg" />
             </div>
             </div>
-            <div class="ml-2 font-weight-bold fs-20">Add child(ren)</div>
+            <div class="ml-2 font-weight-bold fs-20">Add Child(ren)</div>
         </div>
     </div>
 </template>
@@ -59,10 +59,10 @@ export default {
     /* border-radius: 50%; */
 }
 .icon-wrapper {
-    border: 2px solid #1C7ADC;
+    border: 3px solid #1C7ADC;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
 }
 .big-card {
     border-radius: 16px;

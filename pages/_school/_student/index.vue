@@ -37,7 +37,7 @@
                 <div class="px-3 py-1 date fs-14 text-light-blue">{{ date }}</div>
                 <div v-for="item in group" :key="item.id">
                     <div class="d-flex align-items-center mt-3 mb-5">
-                        <div class="mx-3 icon-container bg-info d-flex justify-content-center align-items-center">
+                        <div class="mx-3 icon-wrapper bg-info d-flex justify-content-center align-items-center">
                             <img src="@/assets/img/pencil.svg" />
                         </div>
                         <div>
@@ -78,7 +78,7 @@
             </div>
             <div class="btn-absolute" @click.prevent="$bvModal.show('send-message')">
                 <!-- <span v-if="item.file.length > 0 && item.file[0].type.includes('image')" class="video d-flex align-items-center justify-content-center"><b-icon-camera-video-fill class="fs-18 text-white" /></span> -->
-                <div class="icon-container bg-blue d-flex align-items-center justify-content-center">
+                <div class="icon-wrapper bg-blue d-flex align-items-center justify-content-center">
                     <b-icon-plus-lg class="text-white fs-18" />
                 </div>
             </div>
@@ -138,14 +138,14 @@ export default {
     background: #e7e8eb;
 }
 
-.icon-container {
-    width: 42px;
-    height: 42px;
+.icon-wrapper {
+    min-width: 55px;
+    height: 55px;
     border-radius: 50%;
 }
 .video {
-    width: 42px;
-    height: 42px;
+    width: 55px;
+    height: 55px;
     background: #dc3545;
     border-radius: 50%;
 }
