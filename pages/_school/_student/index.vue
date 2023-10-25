@@ -37,7 +37,9 @@
                 <div class="px-3 py-1 date fs-14 text-light-blue">{{ date }}</div>
                 <div v-for="(item, index) in group" :key="item.id">
                     <div class="d-flex align-items-center mt-3" :class="[index !== group.length - 1 ? 'mb-5' : '']">
-                        <div class="mx-3 icon-wrapper bg-info d-flex justify-content-center align-items-center">
+                        <span v-if="item.file.length > 0 && item.file[0].type.includes('image')" class="wrapper mx-3 d-flex align-items-center justify-content-center" style="background: #1070b7"><b-icon-image class="fs-24 text-white" /></span> 
+                        <span v-else-if="item.file.length > 0 && item.file[0].type.includes('video')" class="wrapper mx-3 d-flex align-items-center justify-content-center" style="background: #dc3545"><b-icon-camera-video-fill class="fs-24 text-white" /></span> 
+                        <div v-else class="mx-3 icon-wrapper bg-info d-flex justify-content-center align-items-center">
                             <img src="@/assets/img/pencil.svg" />
                         </div>
                         <div>
@@ -143,10 +145,9 @@ export default {
     height: 55px;
     border-radius: 50%;
 }
-.video {
+.wrapper {
     width: 55px;
     height: 55px;
-    background: #dc3545;
     border-radius: 50%;
 }
 

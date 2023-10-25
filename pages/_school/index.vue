@@ -108,7 +108,7 @@ button {
 }
 .big-card {
     border-radius: 16px;
-    background: #F4F6F8;
+    background: #f5f6f7;
     height: 168px;
 }
 </style>
