@@ -22,7 +22,7 @@
                 </div>
             </div>
             <hr />
-            <div class="col-12">
+            <div class="mx-2">
                 <v-select
                     v-model="filter"
                     class="select"
