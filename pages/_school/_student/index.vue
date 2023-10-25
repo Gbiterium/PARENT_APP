@@ -50,8 +50,8 @@
                       <div v-if="item.file[0].format == '.png' ||
                         item.file[0].format == '.jpg' ||
                         item.file[0].format == '.jpeg'
-                        " class="p-1" style="width: 200px">
-                        <img :src="item.file[0].url" style="width: 200px; height: 100px" class="img-fluid" alt="" />
+                        " class="p-1">
+                        <img :src="item.file[0].url" style="width: 100%; height: 200px; object-fit: cover;" class="img-fluid" alt="" />
                       </div>
                       <div v-if="item.file[0].format == '.pdf' ||
                         item.file[0].format == '.docx' ||
