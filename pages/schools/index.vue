@@ -11,7 +11,7 @@
             <div class="card pointer shadow-sm p-3" @click.prevent="$router.push(`/${school.code}`)">
                 <div class="d-flex align-items-center">
                     <img :src="school.image" />
-                    <div class="ml-3 fs-20">{{ school.name }}</div>
+                    <div class="ml-3 fs-18">{{ school.name }}</div>
                 </div>
             </div>
             </div>
@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
 .schools-container img {
-    width: 45px;
+    min-width: 45px;
     height: 45px;
     /* border-radius: 50%; */
 }

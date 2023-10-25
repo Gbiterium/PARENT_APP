@@ -35,8 +35,8 @@
         <div class="mt-4 page-content">
             <div v-for="(group, date) in groupedData" :key="date" class="mt-2 mb-3">
                 <div class="px-3 py-1 date fs-14 text-light-blue">{{ date }}</div>
-                <div v-for="item in group" :key="item.id">
-                    <div class="d-flex align-items-center mt-3 mb-5">
+                <div v-for="(item, index) in group" :key="item.id">
+                    <div class="d-flex align-items-center mt-3" :class="[index !== group.length - 1 ? 'mb-5' : '']">
                         <div class="mx-3 icon-wrapper bg-info d-flex justify-content-center align-items-center">
                             <img src="@/assets/img/pencil.svg" />
                         </div>
@@ -154,7 +154,7 @@ export default {
     position: fixed;
     background-color: #fff;
     width: 100%;
-    top: 75px;
+    top: 70px;
 }
 
 .page-content {

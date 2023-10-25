@@ -20,11 +20,11 @@
                             Schools
                         </div>
                         <div v-if="$route.params.student">
-                           <div class="fs-22 font-weight-900">{{ $route.query.name }}</div>
-                           <div class="text-center">{{ $route.query.class }}</div>
+                           <div class="fs-20 font-weight-900">{{ $route.query.name }}</div>
+                           <div class="text-center class">{{ $route.query.class }}</div>
                            <!-- <div class="">{{ $route.query.form_teacher }}</div> -->
                         </div>
-                        <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-22 font-weight-900">{{
+                        <div v-if="!$route.fullPath.includes('schools') && school && !$route.params.student" class="fs-20 font-weight-900">{{
                             school.name }}</div>
                     </div>
                     <div class="pointer d-flex align-items-center">
@@ -217,4 +217,8 @@ export default {
     position: absolute;
     bottom: 0;
     width: 100%;
-}</style>
+}
+.class {
+    line-height: 0.7
+}
+</style>
