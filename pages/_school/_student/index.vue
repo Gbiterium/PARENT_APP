@@ -8,17 +8,17 @@
                     </div>
                     <div class="fs-14 mt-1 font-weight-600" @click.prevent="showMessage">Message</div>
                 </div>
-                <div class="d-flex justify-content-center flex-column" @click.prevent="showReport">
+                <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
                         <b-icon-file-text class="fs-30 text-info" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-600">Reports</span>
+                    <span class="fs-14 mt-1 font-weight-600" @click.prevent="showReport">Reports</span>
                 </div>
-                <div class="d-flex justify-content-center flex-column" @click.prevent="showLearning">
+                <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
                         <b-icon-lightbulb class="fs-30 text-warning" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-600">Learning</span>
+                    <span class="fs-14 mt-1 font-weight-600" @click.prevent="showLearning">Learning</span>
                 </div>
             </div>
             <hr />
@@ -157,7 +157,7 @@ export default {
         },
         formatDate(date) {
             const dateTime = DateTime.fromSQL(date);
-            return dateTime.toFormat('dd LLL yyyy') + ', ' + dateTime.toFormat('h:mm a');
+            return dateTime.toFormat('h:mm a');
         },
         refresh() {
             this.$nuxt.refresh()
