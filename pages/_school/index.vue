@@ -8,8 +8,8 @@
         <div v-else class="row">
             <div v-for="el in students" :key="el.id" class="col-md-4 fs-14 mb-3 schools-container">
                 <div class="big-card">
-                <div class="card shadow-sm pointer p-3" @click.prevent="handleClick(el)">
-                    <div class="d-flex align-items-center">
+                <div class="card shadow-sm pointer p-3">
+                    <div class="d-flex align-items-center" @click.prevent="handleClick(el)">
                         <div class="img-container">
                             <img :src="el.image
                                 ? el.image
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mt-3">
-                        <button class="btn btn-warning px-4 py-2 mr-3 w-50 fs-16 font-weight-600">Reports</button>
+                        <button class="btn btn-warning px-4 py-2 mr-3 w-50 fs-16 font-weight-600" @click.prevent="goToReport(el)">Reports</button>
                         <button class="btn btn-primary px-4 py-2 w-50 fs-16 font-weight-600">Learning</button>
                     </div>
                 </div>
@@ -83,6 +83,17 @@ export default {
         handleClick(item) {
             this.$router.push({
                 path: `/${this.$route.params.school}/${item.class_student_id}`,
+                query: {
+                    name: item.name,
+                    class: item.class_name,
+                    form_teacher: item.form_teacher
+                }
+            })
+        },
+        goToReport(item) {
+            console.log(item, 'hello')
+            this.$router.push({
+                path: `/${this.$route.params.school}/${item.class_student_id}/report-card`,
                 query: {
                     name: item.name,
                     class: item.class_name,

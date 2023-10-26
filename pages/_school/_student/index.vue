@@ -12,7 +12,7 @@
                     <div class="d-flex justify-content-center">
                         <b-icon-file-text class="fs-30 text-info" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-600">Reports</span>
+                    <span class="fs-14 mt-1 font-weight-600" @click.prevent="goToReport">Reports</span>
                 </div>
                 <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">
@@ -117,7 +117,6 @@ export default {
                 }
                 groupedData[date].push(item);
             });
-            // console.log(groupedData);
             return {
                 groupedData
             };
@@ -127,6 +126,15 @@ export default {
         }
     },
     methods: {
+        goToReport(item) {
+            this.$router.push({
+                path: `/${this.$route.params.school}/${this.$route.params.student}/report-card`,
+                query: {
+                    name: this.$route.query.name,
+                    class: this.$route.query.class,
+                }
+            })
+        },
         formatDate(date) {
             const dateTime = DateTime.fromSQL(date);
             return dateTime.toFormat('dd LLL yyyy') + ', ' + dateTime.toFormat('h:mm a');
