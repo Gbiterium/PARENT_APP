@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
     layout: 'parent',
     // middleware: 'route-guard',
@@ -41,14 +41,9 @@ export default {
     computed: {
         ...mapGetters('school', ['getSchools'])
     },
-    async created () {
-        this.loading = true
-        await this.GET_SCHOOLS()
-        this.loading = false
-    },
-    methods: {
-        ...mapActions('school', ['GET_SCHOOLS']) 
-    }
+    async asyncData({ store }) {
+    await store.dispatch('school/GET_SCHOOLS');
+  },
 }
 </script>
 
