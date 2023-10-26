@@ -39,7 +39,7 @@
                                 </button></b-dropdown-item>
                         </b-dropdown> -->
                         <!-- <img src="@/assets/img/default_profile.png" /> -->
-                        <b-icon-bell-fill v-if="$route.name === 'schools'" class="text-light-blue" />
+                        <b-icon-bell-fill v-if="$route.name.includes('schools')" class="text-light-blue" />
                     </div>
                 </div>
                 <!-- <div v-if="pageRoute.length === 3" class="students mt-3 d-flex align-items-center pointer">
