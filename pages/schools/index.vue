@@ -66,7 +66,7 @@ export default {
 }
 .big-card {
     border-radius: 16px;
-    background: #f5f6f7;
-    height: 87px;
+    background: #dadada;
+    height: 85px;
 }
 </style>

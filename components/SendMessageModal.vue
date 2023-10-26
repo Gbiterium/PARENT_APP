@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ModalWrapper id="send-message" title="Send Message" submit-title="Send Message" @ok="postMessage">
+        <ModalWrapper id="send-message" title="Send Message" submit-title="Send Message" :loading="isLoading" @ok="postMessage">
             <form>
                 <label>Message</label>
                 <textarea v-model="message" class="form-control input" placeholder="Message"></textarea>
@@ -53,6 +53,7 @@ export default {
             filetype: '',
             targetFiles: '',
             loading: false,
+            isLoading: false
         }
     },
     computed: {
@@ -62,6 +63,7 @@ export default {
   },
     methods: {
         async postMessage() {
+            this.isLoading = true
             const payload = {
                 message: this.message,
                 files: this.messageFiles,
@@ -85,6 +87,8 @@ export default {
                 }
             } catch (e) {
                 console.log(e);
+            } finally {
+                this.isLoading = false
             }
         },
         addFile(type) {

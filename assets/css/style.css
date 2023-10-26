@@ -101,9 +101,12 @@ html {
   .btn.btn-dark:not(:disabled):active {
     background: #171e40;
   }
+  .btn-warning {
+    border: 1px solid #ffc107 !important;
+  }
   .btn.btn-primary {
-    background: #1C7ADC;
-    border: 1px solid #1C7ADC;
+    background: #1C7ADC !important;
+    border: 1px solid #1C7ADC !important;
     color: #ffffff;
   }
   .btn.btn-primary:not(:disabled):hover,

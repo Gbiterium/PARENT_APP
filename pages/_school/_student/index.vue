@@ -8,11 +8,11 @@
                     </div>
                     <div class="fs-14 mt-1 font-weight-600">Message</div>
                 </div>
-                <div class="d-flex justify-content-center flex-column">
+                <div class="d-flex justify-content-center flex-column" @click.prevent="goToReport">
                     <div class="d-flex justify-content-center">
                         <b-icon-file-text class="fs-30 text-info" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-600" @click.prevent="goToReport">Reports</span>
+                    <span class="fs-14 mt-1 font-weight-600">Reports</span>
                 </div>
                 <div class="d-flex justify-content-center flex-column">
                     <div class="d-flex justify-content-center">

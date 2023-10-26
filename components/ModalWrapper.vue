@@ -33,6 +33,7 @@
         <div>
           <button
             class="btn btn-primary py-2 px-4"
+            :disabled="loading"
             @click="$emit('ok', $event)"
           >
             {{ submitTitle }}
@@ -87,6 +88,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      default: false
+    }
   },
 }
 </script>
