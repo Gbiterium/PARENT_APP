@@ -2,7 +2,7 @@
     <div class="page-wrapper">
         <LayoutNavbar class="site-nav" @show-dropdown="showDropdown" />
         <Nuxt />
-        <LayoutFooter class="footer-nav" v-if="!$route.params.student" />
+        <LayoutFooter class="footer-nav" v-if="!$route.params.student && $route.name !== 'coming-soon'" />
         <LayoutNavBarDropdown v-if="show" @close-dropdown="closeDropdown" />
     </div>
 </template>

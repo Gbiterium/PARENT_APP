@@ -3,7 +3,9 @@
   </template>
   
   <script>
-  export default {}
+  export default {
+    layout: 'parent'
+  }
   </script>
   
   <style scoped></style>

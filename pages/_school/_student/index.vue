@@ -6,15 +6,15 @@
                     <div class="d-flex justify-content-center">
                         <b-icon-chat class="fs-30 text-light-blue" />
                     </div>
-                    <div class="fs-14 mt-1 font-weight-600">Message</div>
+                    <div class="fs-14 mt-1 font-weight-600" @click.prevent="showMessage">Message</div>
                 </div>
-                <div class="d-flex justify-content-center flex-column" @click.prevent="goToReport">
+                <div class="d-flex justify-content-center flex-column" @click.prevent="showReport">
                     <div class="d-flex justify-content-center">
                         <b-icon-file-text class="fs-30 text-info" />
                     </div>
                     <span class="fs-14 mt-1 font-weight-600">Reports</span>
                 </div>
-                <div class="d-flex justify-content-center flex-column">
+                <div class="d-flex justify-content-center flex-column" @click.prevent="showLearning">
                     <div class="d-flex justify-content-center">
                         <b-icon-lightbulb class="fs-30 text-warning" />
                     </div>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <hr />
-            <div class="mx-2">
+            <div v-if="message" class="mx-2">
                 <v-select
                     v-model="filter"
                     class="select"
@@ -32,7 +32,7 @@
                   </v-select>
             </div>
         </div>
-        <div class="mt-4 page-content">
+        <div v-if="message" class="mt-4 page-content">
             <div v-for="(group, date) in groupedData" :key="date" class="mt-2 mb-3">
                 <div class="px-3 py-1 date fs-14 text-light-blue">{{ date }}</div>
                 <div v-for="(item, index) in group" :key="item.id">
@@ -89,6 +89,8 @@
                 </div>
             </div>
         </div>
+        <Reports v-if="report" />
+        <ComingSoon v-if="learning" />
         <SendMessageModal @refresh="refresh" />
     </div>
 </template>
@@ -101,7 +103,10 @@ export default {
     data () {
         return {
             filter: 'All Activities',
-            filters: ['All Activities', 'Food']
+            filters: ['All Activities', 'Food'],
+            message: true,
+            report: false,
+            learning: false,
         }
     },
     async asyncData({ $axios, route }) {
@@ -126,6 +131,21 @@ export default {
         }
     },
     methods: {
+        showMessage() {
+            this.message = true
+            this.report = false
+            this.learning = false
+        },
+        showReport() {
+            this.message = false
+            this.report = true
+            this.learning = false
+        },
+        showLearning() {
+            this.message = false
+            this.report = false
+            this.learning = true
+        },
         goToReport(item) {
             this.$router.push({
                 path: `/${this.$route.params.school}/${this.$route.params.student}/report-card`,
