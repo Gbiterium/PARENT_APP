@@ -29,7 +29,7 @@
             <img src="@/assets/img/empty-list.svg" />
             </div>
             <div class="fs-14 text-black mt-2 text-capitalize">
-            no results found
+            no report card found
           </div>
           </div>
         </div>

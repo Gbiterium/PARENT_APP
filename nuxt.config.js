@@ -63,6 +63,8 @@ export default {
     // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
     icons: true
   },
+  // Global Transition (default)
+  pageTransition: 'fade',
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

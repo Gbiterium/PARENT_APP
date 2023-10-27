@@ -49,7 +49,7 @@
                   item.name
                 }}</small>
                             <div v-if="item.post !== ''" class="font-weight-bold fs-14">{{ item.post }}</div>
-                            <div class="fs-10 text-grey">{{ formatDate(item.datetime) }}</div>
+                            <div class="fs-12 text-grey">{{ formatDate(item.datetime) }}</div>
                             <div v-if="item.file">
                   <div v-if="item.file[0]" class="bg-white font-weight-600">
                     <!-- <div v-if="imageViewExpanded"></div> -->
@@ -89,6 +89,18 @@
                     <b-icon-plus-lg class="text-white fs-18" />
                 </div>
             </div>
+            <div v-if="Object.keys(groupedData).length === 0"
+            class="d-flex flex-column align-items-center justify-content-center text-center mt-4">
+            <div class="mb-4">
+              <img class="img-fluid" src="@/assets/img/empty-chats.svg" />
+            </div>
+            <div class="font-weight-bold fs-16 mb-3">
+              It’s Nice to chat with someone. 😊
+            </div>
+            <div class="fs-12 text-lighter">
+              Click on the bottom from left icon<br />and start your conversation
+            </div>
+          </div>
         </div>
         </div>
         <Reports v-if="report" />
@@ -146,10 +158,10 @@ export default {
       this.windowWidth = window.innerWidth
         },
         showMessage() {
-            console.log(this.windowWidth, 'hello')
             this.message = true
             this.report = false
             this.learning = false
+            this.$nuxt.refresh()
         },
         showReport() {
             this.message = false
