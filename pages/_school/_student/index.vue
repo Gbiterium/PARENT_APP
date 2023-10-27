@@ -1,24 +1,25 @@
 <template>
     <div>
-        <div class="topbar py-3">
+        <div :class="{ 'container': windowWidth > 767 }">
+        <div class="topbar py-3" :class="{ 'container': windowWidth > 767 }">
             <div class="d-flex align-items-center justify-content-between mx-5">
-                <div class="d-flex justify-content-center flex-column">
+                <div class="d-flex justify-content-center flex-column" @click.prevent="showMessage">
                     <div class="d-flex justify-content-center">
                         <b-icon-chat class="fs-30 text-light-blue" />
                     </div>
-                    <div class="fs-14 mt-1 font-weight-600" @click.prevent="showMessage">Message</div>
+                    <div class="fs-14 mt-1 font-weight-600">Message</div>
                 </div>
-                <div class="d-flex justify-content-center flex-column">
+                <div class="d-flex justify-content-center flex-column" @click.prevent="showReport">
                     <div class="d-flex justify-content-center">
                         <b-icon-file-text class="fs-30 text-info" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-600" @click.prevent="showReport">Reports</span>
+                    <span class="fs-14 mt-1 font-weight-600">Reports</span>
                 </div>
-                <div class="d-flex justify-content-center flex-column">
+                <div class="d-flex justify-content-center flex-column" @click.prevent="showLearning">
                     <div class="d-flex justify-content-center">
                         <b-icon-lightbulb class="fs-30 text-warning" />
                     </div>
-                    <span class="fs-14 mt-1 font-weight-600" @click.prevent="showLearning">Learning</span>
+                    <span class="fs-14 mt-1 font-weight-600">Learning</span>
                 </div>
             </div>
             <hr />
@@ -89,6 +90,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <Reports v-if="report" />
         <ComingSoon v-if="learning" />
         <SendMessageModal @refresh="refresh" />
@@ -107,6 +109,7 @@ export default {
             message: true,
             report: false,
             learning: false,
+            windowWidth: window.innerWidth
         }
     },
     async asyncData({ $axios, route }) {
@@ -130,8 +133,20 @@ export default {
             console.log(error);
         }
     },
+    mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+  },
+  beforeDestroy() { 
+    window.removeEventListener('resize', this.onResize); 
+  },
     methods: {
+        onResize() {
+      this.windowWidth = window.innerWidth
+        },
         showMessage() {
+            console.log(this.windowWidth, 'hello')
             this.message = true
             this.report = false
             this.learning = false

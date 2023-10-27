@@ -6,7 +6,7 @@
             <b-skeleton class="mb-3" width="100%" height="78px"></b-skeleton>
         </div> -->
         <div class="row">
-            <div v-for="el in students" :key="el.id" class="col-md-4 fs-14 mb-3 schools-container">
+            <div v-for="el in students" :key="el.id" class="col-md-6 col-lg-4 fs-14 mb-3 schools-container">
                 <div class="big-card">
                 <div class="card shadow-sm pointer p-3">
                     <div class="d-flex align-items-center" @click.prevent="handleClick(el)">
@@ -125,7 +125,7 @@ button {
 }
 .big-card {
     border-radius: 16px;
-    background: #dadada;
+    background: #e0e0e0;
     height: 168px;
 }
 </style>
