@@ -37,7 +37,7 @@
             <div v-for="(group, date) in groupedData" :key="date" class="mt-2 mb-3">
                 <div class="px-3 py-1 date fs-14 text-light-blue">{{ date }}</div>
                 <div v-for="(item, index) in group" :key="item.id">
-                    <div class="d-flex mt-3" :class="[index !== group.length - 1 ? 'mb-5' : '']">
+                    <div class="d-flex flex-grow-1 mt-3" :class="[index !== group.length - 1 ? 'mb-5' : '']">
                         <span v-if="item.file[0] && item.file[0].type && item.file[0].type.includes('image')" class="wrapper mx-3 d-flex align-items-center justify-content-center" style="background: #1070b7"><b-icon-image class="fs-24 text-white" /></span>
 <span v-else-if="item.file[0] && item.file[0].type && item.file[0].type.includes('video')" class="wrapper mx-3 d-flex align-items-center justify-content-center" style="background: #dc3545"><b-icon-camera-video-fill class="fs-24 text-white" /></span>
 
@@ -79,6 +79,14 @@
                     </div>
                   </div>
                 </div>
+                <!-- <div class="flex-grow-1"> -->
+                <!-- <hr class="my-2"> -->
+                <div class="w-100 d-flex align-items-center my-2">
+                    <b-icon-reply class="fs-20 mr-4" />
+                <b-icon-chat class="fs-20" />
+                </div>
+                            <!-- <hr class="my-2" /> -->
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
@@ -103,7 +111,7 @@
           </div>
         </div>
         </div>
-        <Reports v-if="report" />
+        <Reports :reports="reports" v-if="report" />
         <ComingSoon v-if="learning" />
         <SendMessageModal @refresh="refresh" />
     </div>
@@ -121,7 +129,8 @@ export default {
             message: true,
             report: false,
             learning: false,
-            windowWidth: window.innerWidth
+            windowWidth: window.innerWidth,
+            reports: []
         }
     },
     async asyncData({ $axios, route }) {
@@ -146,6 +155,7 @@ export default {
         }
     },
     mounted() {
+        this.getReportCard()
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
@@ -154,6 +164,17 @@ export default {
     window.removeEventListener('resize', this.onResize); 
   },
     methods: {
+        async getReportCard() {
+            try {
+                this.loading = true
+                const { data } = await this.$axios.get(`/util/v2/mobile/reportcards/${this.$route.params.student}/`)
+                this.reports = data.data.results
+            } catch (error) {
+                console.log(error)
+            } finally {
+                this.loading = false
+            }
+        },
         onResize() {
       this.windowWidth = window.innerWidth
         },

@@ -39,9 +39,15 @@ import axios from 'axios'
 import { DateTime } from 'luxon'
 export default {
     layout: 'parent',
+    props: {
+        reports: {
+            type: Array,
+            default: []
+        }
+    },
     data() {
         return {
-            reports: [],
+            // reports: [],
             loading: false,
             downloading: null,
         }
@@ -57,21 +63,21 @@ export default {
     //     console.log(error)
     //   }
     // },
-    async created() {
-        this.getReportCard()
-    },
+    // async created() {
+    //     this.getReportCard()
+    // },
     methods: {
-        async getReportCard() {
-            try {
-                this.loading = true
-                const { data } = await this.$axios.get(`/util/v2/mobile/reportcards/${this.$route.params.student}/`)
-                this.reports = data.data.results
-            } catch (error) {
-                console.log(error)
-            } finally {
-                this.loading = false
-            }
-        },
+        // async getReportCard() {
+        //     try {
+        //         this.loading = true
+        //         const { data } = await this.$axios.get(`/util/v2/mobile/reportcards/${this.$route.params.student}/`)
+        //         this.reports = data.data.results
+        //     } catch (error) {
+        //         console.log(error)
+        //     } finally {
+        //         this.loading = false
+        //     }
+        // },
         async downloadFile(file) {
       try {
         this.downloading = file
