@@ -45,11 +45,11 @@
                             <img src="@/assets/img/pencil.svg" />
                         </div>
                         <div>
-                            <small class="text-primary font-weight-bold fs-14 py-1">{{
+                            <small class="text-primary font-weight-bold fs-12 py-1">{{
                   item.name
                 }}</small>
-                            <div v-if="item.post !== ''" class="font-weight-600">{{ item.post }}</div>
-                            <div class="fs-12 text-grey">{{ formatDate(item.datetime) }}</div>
+                            <div v-if="item.post !== ''" class="font-weight-bold fs-14">{{ item.post }}</div>
+                            <div class="fs-10 text-grey">{{ formatDate(item.datetime) }}</div>
                             <div v-if="item.file">
                   <div v-if="item.file[0]" class="bg-white font-weight-600">
                     <!-- <div v-if="imageViewExpanded"></div> -->
@@ -68,7 +68,7 @@
                         " class="bg-white rounded w-100 p-1">
                         <a :href="item.file[0].url" target="_blank">
                           <b-icon-file-earmark class="text-dark" />
-                          <span class="text-dark"> {{ item.file[0].file_name }}</span>
+                          <span class="text-dark fs-14"> {{ item.file[0].file_name }}</span>
                         </a>
                       </div>
                       <div v-if="item.file[0].format == '.mp4' ||
